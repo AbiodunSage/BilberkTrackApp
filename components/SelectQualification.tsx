@@ -22,8 +22,8 @@ export function SelectDemo() {
           <SelectItem value="HighSchoolCertificate">
             High School Certificate
           </SelectItem>
-          <SelectItem value="Bachelor's Degree">Bachelor's Degree</SelectItem>
-          <SelectItem value="Master's Degree">Master's Degree</SelectItem>
+          <SelectItem value="Bachelors Degree">Bachelors Degree</SelectItem>
+          <SelectItem value="Masters Degree">Masters Degree</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
