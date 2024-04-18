@@ -21,10 +21,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div></div>
         {/* main page */}
         <div className="flex flex-wrap w-full">
-          <div className="p-8 w-1/2">{children}</div>
-          <div className="w-1/2">
-            <DashGrid />
-          </div>
+          <div className="p-8">{children}</div>
+          <div className="">{/*  <DashGrid /> */}</div>
         </div>
       </body>
     </html>

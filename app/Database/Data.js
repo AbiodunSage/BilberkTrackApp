@@ -5,6 +5,10 @@ const User = {
   bookings: "you have no bookings with us",
   image: "/mickey.png",
   status: "Under Review",
+  ApplicationSubmitted: false,
+  ApplicationProcessed: true,
+  Payment: true,
+  VisaProcessing: false,
 };
 
 export default User;
