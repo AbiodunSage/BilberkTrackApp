@@ -1,6 +1,3 @@
-import Image from "next/image";
-import React from "react";
-import Former from "./signupform/page";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";

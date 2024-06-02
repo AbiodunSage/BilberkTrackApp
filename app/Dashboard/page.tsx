@@ -1,12 +1,10 @@
-/** @format */
-
 import PageTitle from "@/components/PageTitle";
-import { CardContent } from "@/components/Card";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { DialogDemo } from "./EditProfile";
 import Data from "../Database/Data";
+import { CardContent } from "@/components/ui/card";
 
 const user = Data;
 

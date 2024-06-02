@@ -1,7 +1,6 @@
 import React from "react";
 import { cn } from "../../lib/utils";
 import SideNavbar from "../../components/sideNavbar";
-import DashGrid from "@/components/DashGrid";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (

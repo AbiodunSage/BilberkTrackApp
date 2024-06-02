@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 
-const loginpage = () => {
+const LoginPage = () => {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -96,4 +96,4 @@ const loginpage = () => {
   );
 };
 
-export default loginpage;
+export default LoginPage;
