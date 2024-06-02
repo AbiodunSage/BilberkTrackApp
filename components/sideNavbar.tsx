@@ -10,7 +10,7 @@ import {
   User,
   LayoutDashboard,
   UsersRound,
-  Settings,
+  ListChecks,
   ChevronRight,
   Calendar,
 } from "lucide-react";
@@ -69,8 +69,14 @@ export default function SideNavbar({}: Props) {
             variant: "ghost",
           },
           {
+            title: "Track My Application",
+            href: "/Tracking/TrackLogin",
+            icon: ListChecks,
+            variant: "ghost",
+          },
+          {
             title: "LogOUT",
-            href: "/application",
+            href: "/",
             icon: LayoutDashboard,
             variant: "ghost",
           },

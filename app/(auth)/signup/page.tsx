@@ -50,16 +50,13 @@ const signuppage = () => {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" />
             </div>
-            <Button type="submit" className="w-full">
-              Create an account
-            </Button>
-            <Button variant="outline" className="w-full">
-              Sign up with GitHub
+            <Button type="submit" className="w-full" asChild>
+              <Link href="/Login">Create an account</Link>
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link href="#" className="underline">
+            <Link href="/Login" className="underline">
               Sign in
             </Link>
           </div>
