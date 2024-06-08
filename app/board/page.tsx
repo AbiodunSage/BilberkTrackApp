@@ -12,9 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { MainNav } from "./components/main-nav";
-
-import { Search } from "./components/search";
-
+import HelloUser from "./components/Welcome";
 import { UserNav } from "./components/user-nav";
 import TrackPage from "./components/track-page";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -43,7 +41,7 @@ export default function DashboardPage() {
           <div className="flex h-16 items-center px-4">
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
-              <Search />
+              <HelloUser />
               <UserNav />
             </div>
           </div>

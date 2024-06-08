@@ -9,7 +9,7 @@ const Navigation = () => {
 
   const menus = [
     { title: "Home", path: "/" },
-    { title: "DashBoard", path: "/Dashboard" },
+    { title: "DashBoard", path: "/board" },
     { title: "LogIn", path: "/Login" },
     { title: "SignUp", path: "/signup" },
     { title: "Track My Application", path: "/Tracking/TrackLogin" },
@@ -47,14 +47,6 @@ const Navigation = () => {
                   <Link href={item.path}>{item.title}</Link>
                 </li>
               ))}
-              <form className="flex items-center  space-x-2 border rounded-md p-2">
-                <Search className="h-5 w-5 flex-none text-gray-300" />
-                <input
-                  className="w-full outline-none appearance-none placeholder-gray-500 text-gray-500 sm:w-auto"
-                  type="text"
-                  placeholder="Search"
-                />
-              </form>
             </ul>
           </div>
         </div>
