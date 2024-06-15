@@ -13,6 +13,7 @@ import { UserNav } from "./components/user-nav";
 import TrackPage from "./components/track-page";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SiteFooter } from "./components/Footer";
+import { Caroussel } from "@/components/Caroussel";
 
 export default function DashboardPage() {
   return (
@@ -160,17 +161,12 @@ export default function DashboardPage() {
                     <CardTitle>TrackPage</CardTitle>
                     <TrackPage />
                   </CardHeader>
-                  <CardContent className="pl-2">
-                    {/*  <Overview /> */}
-                  </CardContent>
+                  <CardContent className="pl-2"></CardContent>
                 </Card>
-                <Card className="col-span-3">
+                <Card className="col-span-3 ">
+                  <CardTitle>Overview</CardTitle>
                   <CardContent>
-                    {/* <RecentSales /> */}
-                    <ScrollArea className="">
-                      <CardTitle>Overview</CardTitle>
-                      <Card>blog posts</Card>
-                    </ScrollArea>
+                    <Caroussel />
                   </CardContent>
                 </Card>
               </div>
