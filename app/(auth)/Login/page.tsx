@@ -25,7 +25,7 @@ const LoginPage = () => {
 
   const handleSubmit = () => {
     console.log(formData);
-    router.push("/Dashboard");
+    router.push("/board");
   };
   return (
     <>
