@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Blogs = () => {
@@ -5,8 +6,13 @@ const Blogs = () => {
   return (
     <>
       {blog.map((item) => (
-        <div>
-          <img src={item} alt="images" />
+        <div key={item}>
+          <Image
+            src={item}
+            width={500}
+            height={500}
+            alt="Picture of the author"
+          />
         </div>
       ))}
     </>
