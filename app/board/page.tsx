@@ -1,17 +1,10 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 
 import { MainNav } from "./components/main-nav";
 import HelloUser from "./components/Welcome";
 import { UserNav } from "./components/user-nav";
 import TrackPage from "./components/track-page";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { SiteFooter } from "./components/Footer";
 import { Caroussel } from "@/components/Caroussel";
 

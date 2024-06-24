@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import useLogin from "../../../hooks/useLogin";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -23,9 +24,9 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = () => {
-    console.log(formData);
-    router.push("/board");
+  const { loading, error, login } = useLogin();
+  const handleSubmit = async () => {
+    await login(formData);
   };
   return (
     <>

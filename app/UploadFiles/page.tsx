@@ -1,10 +1,10 @@
 import PageTitle from "@/components/PageTitle";
 import React from "react";
-import Navigation from "../(auth)/Nav/page";
-import FormApply from "./FormApply";
-import UploadFiles from "@/app/UploadFiles/page";
 
-const ApplicationForm = () => {
+import FormUpload from "./FormUpload";
+import Navigation from "@/app/(auth)/Nav/page";
+
+const UploadFiles = () => {
   return (
     <>
       <main className="container w-3/4 mx-auto">
@@ -18,7 +18,7 @@ const ApplicationForm = () => {
           This form will help us understand your educational status and how to
           help you further.
         </h1>
-        <FormApply />
+        <FormUpload />
         <div className="bg-red-400 w-full h-20 text-white text-center font-extrabold mx-auto">
           <h1 className="mx-auto">Thank you for Your Time!!!</h1>
         </div>
@@ -27,5 +27,5 @@ const ApplicationForm = () => {
   );
 };
 
-export default ApplicationForm;
-// push files to another firestore collection
+export default UploadFiles;
+// take files uploaded and push to storage

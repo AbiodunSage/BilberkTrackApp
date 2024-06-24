@@ -1,8 +1,9 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-
+import useSignUpWithEmailAndPassword from "@/hooks/useSignUpWithEmailAndPassword";
 import {
   Card,
   CardContent,
@@ -10,8 +11,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useState } from "react";
 
 const signuppage = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    fullname: "",
+    email: "",
+    password: "",
+  });
+  const handleChange = (event: any) => {
+    const fieldName = event.target.name;
+    const newValue = event.target.value;
+    setFormData({
+      ...formData,
+      [fieldName]: newValue,
+    });
+  };
+
+  const { loading, error, signup } = useSignUpWithEmailAndPassword();
+
+  const handleSubmit = () => {
+    signup(formData);
+  };
   return (
     <>
       <Card className="mx-auto max-w-sm">
@@ -26,18 +48,35 @@ const signuppage = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="first-name">First name</Label>
-                <Input id="first-name" placeholder="Max" required />
+                <Input
+                  id="username"
+                  name="username"
+                  placeholder="SAGE"
+                  required
+                  value={formData.username}
+                  onChange={handleChange}
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="last-name">Last name</Label>
-                <Input id="last-name" placeholder="Robinson" required />
+                <Input
+                  id="fullname"
+                  name="fullname"
+                  placeholder="SANI"
+                  required
+                  value={formData.fullname}
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="m@example.com"
                 required
               />
@@ -45,10 +84,17 @@ const signuppage = () => {
 
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" />
+
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
             </div>
-            <Button type="submit" className="w-full" asChild>
-              <Link href="/Login">Create an account</Link>
+            <Button onClick={handleSubmit} type="submit" className="w-full">
+              Create an account
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">

@@ -40,12 +40,6 @@ const FormApply = () => {
     city: "",
     country: "",
     specificCountry: "",
-    passportUpload: "",
-    transcriptUpload: "",
-    diplomaUpload: "",
-    cvupload: "",
-    letterUpload: "",
-    photoUpload: "",
     interestedCountry: "",
     SpecificCountry: "",
     gdprConsent: "",
@@ -75,12 +69,6 @@ const FormApply = () => {
       city: "",
       country: "",
       specificCountry: "",
-      passportUpload: "",
-      transcriptUpload: "",
-      diplomaUpload: "",
-      cvupload: "",
-      letterUpload: "",
-      photoUpload: "",
       interestedCountry: "",
       SpecificCountry: "",
       gdprConsent: "",
@@ -99,7 +87,7 @@ const FormApply = () => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    router.push("/Dashboard");
+    router.push("/UploadFiles");
     console.log(formData);
   };
   return (
@@ -278,157 +266,13 @@ const FormApply = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="bg-gray-100 space-y-4">
-          <h1>Upload Documents</h1>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="passport">Upload Your Passport</Label>
-            <Input
-              id="picture"
-              type="file"
-              name="passportUpload"
-              value={formData.passportUpload}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="passport">Upload your Transcript</Label>
-            <Input
-              id="pdf"
-              name="transcriptUpload"
-              type="file"
-              value={formData.transcriptUpload}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="passport">Upload your Diploma</Label>
-            <Input
-              id="pdf"
-              name="diplomaUpload"
-              type="file"
-              value={formData.diplomaUpload}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="passport">Upload your CV</Label>
-            <Input
-              id="pdf"
-              name="cvupload"
-              type="file"
-              value={formData.cvupload}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="passport">Upload your Reference Letter</Label>
-            <Input
-              id="pdf"
-              name="letterUpload"
-              type="file"
-              value={formData.letterUpload}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="grid w-full max-w-sm items-center gap-1.5">
-            <Label htmlFor="passport">Upload your Photo</Label>
-            <Input
-              id="picture"
-              name="photoUpload"
-              type="file"
-              value={formData.photoUpload}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="bg-gray-200 space-y-4">
-            <h1>Which Country are you interested in?</h1>
-            <div className="items-top flex space-x-2">
-              <Checkbox
-                id="terms1"
-                name="interestedCountry"
-                value={formData.interestedCountry}
-                onChange={handleChange}
-              />
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor="terms1"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  European Countries
-                </label>
-              </div>
-            </div>
-            <div className="items-top flex space-x-2">
-              <Checkbox id="terms1" />
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor="terms1"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Cyprus
-                </label>
-              </div>
-            </div>
-            <div className="items-top flex space-x-2">
-              <Checkbox id="terms1" />
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor="terms1"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Turkey
-                </label>
-              </div>
-            </div>
-            <div className="items-top flex space-x-2">
-              <Checkbox id="terms1" />
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor="terms1"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  UK
-                </label>
-              </div>
-            </div>
-            <div className="items-top flex space-x-2">
-              <Checkbox id="terms1" />
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor="terms1"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Canada
-                </label>
-              </div>
-            </div>
-            <div className="items-top flex space-x-2">
-              <Checkbox id="terms1" />
-              <div className="grid gap-1.5 leading-none">
-                <label
-                  htmlFor="terms1"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Other Asian Countries
-                </label>
-              </div>
-            </div>
-          </div>
-          <Input
-            type="Text"
-            name="SpecificCountry"
-            placeholder="Specific Country of Choice"
-            value={formData.SpecificCountry}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="bg-gray-100 space-y-4">
-          <h1>GDPR consent</h1>
+        <div className="bg-gray-200 space-y-4">
+          <h1>Which Country are you interested in?</h1>
           <div className="items-top flex space-x-2">
             <Checkbox
               id="terms1"
-              name="gdprConsent"
-              value={formData.gdprConsent}
+              name="interestedCountry"
+              value={formData.interestedCountry}
               onChange={handleChange}
             />
             <div className="grid gap-1.5 leading-none">
@@ -436,23 +280,104 @@ const FormApply = () => {
                 htmlFor="terms1"
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
-                GDPR Consent
+                European Countries
               </label>
-              <p>
-                Agree on our{" "}
-                <a
-                  className="no-underline text-yellow-600"
-                  href="https://bilberktravelagency.com/elementor-5359/"
-                >
-                  terms and condition
-                </a>{" "}
-                for using your submitted data?
-              </p>
+            </div>
+          </div>
+          <div className="items-top flex space-x-2">
+            <Checkbox id="terms1" />
+            <div className="grid gap-1.5 leading-none">
+              <label
+                htmlFor="terms1"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Cyprus
+              </label>
+            </div>
+          </div>
+          <div className="items-top flex space-x-2">
+            <Checkbox id="terms1" />
+            <div className="grid gap-1.5 leading-none">
+              <label
+                htmlFor="terms1"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Turkey
+              </label>
+            </div>
+          </div>
+          <div className="items-top flex space-x-2">
+            <Checkbox id="terms1" />
+            <div className="grid gap-1.5 leading-none">
+              <label
+                htmlFor="terms1"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                UK
+              </label>
+            </div>
+          </div>
+          <div className="items-top flex space-x-2">
+            <Checkbox id="terms1" />
+            <div className="grid gap-1.5 leading-none">
+              <label
+                htmlFor="terms1"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Canada
+              </label>
+            </div>
+          </div>
+          <div className="items-top flex space-x-2">
+            <Checkbox id="terms1" />
+            <div className="grid gap-1.5 leading-none">
+              <label
+                htmlFor="terms1"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                Other Asian Countries
+              </label>
             </div>
           </div>
         </div>
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Input
+          type="Text"
+          name="SpecificCountry"
+          placeholder="Specific Country of Choice"
+          value={formData.SpecificCountry}
+          onChange={handleChange}
+        />
       </div>
+      <div className="bg-gray-100 space-y-4">
+        <h1>GDPR consent</h1>
+        <div className="items-top flex space-x-2">
+          <Checkbox
+            id="terms1"
+            name="gdprConsent"
+            value={formData.gdprConsent}
+            onChange={handleChange}
+          />
+          <div className="grid gap-1.5 leading-none">
+            <label
+              htmlFor="terms1"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              GDPR Consent
+            </label>
+            <p>
+              Agree on our{" "}
+              <a
+                className="no-underline text-yellow-600"
+                href="https://bilberktravelagency.com/elementor-5359/"
+              >
+                terms and condition
+              </a>{" "}
+              for using your submitted data?
+            </p>
+          </div>
+        </div>
+      </div>
+      <Button onClick={handleSubmit}>Submit</Button>
     </>
   );
 };
