@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 
-const signuppage = () => {
+const Signuppage = () => {
   const [formData, setFormData] = useState({
     username: "",
     fullname: "",
@@ -109,4 +109,4 @@ const signuppage = () => {
   );
 };
 
-export default signuppage;
+export default Signuppage;
