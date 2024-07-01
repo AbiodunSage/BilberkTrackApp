@@ -28,7 +28,7 @@ const useLogin = () => {
         localStorage.setItem("user-info", JSON.stringify(docSnap.data()));
         loginUser(docSnap.data());
         showToast("variant", "logged in succesfully", "success");
-        router.push("/board");
+        router.push("/Board");
       }
     } catch (error) {
       console.error(error);

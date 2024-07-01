@@ -9,9 +9,9 @@ const Navigation = () => {
 
   const menus = [
     { title: "Home", path: "/" },
-    { title: "DashBoard", path: "/board" },
+    { title: "DashBoard", path: "/Board" },
     { title: "LogIn", path: "/Login" },
-    { title: "SignUp", path: "/signup" },
+    { title: "SignUp", path: "/Signup" },
     { title: "Track My Application", path: "/Tracking/TrackLogin" },
   ];
   return (

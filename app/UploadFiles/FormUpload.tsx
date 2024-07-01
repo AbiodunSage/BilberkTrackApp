@@ -4,101 +4,127 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { auth, storage } from "@/firebase/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const FormUpload = () => {
-  const [formData, setFormData] = useState({
-    passportUpload: "",
-    transcriptUpload: "",
-    diplomaUpload: "",
-    cvupload: "",
-    letterUpload: "",
-    photoUpload: "",
-    errors: {
-      passportUpload: "",
-      transcriptUpload: "",
-      diplomaUpload: "",
-      cvupload: "",
-      letterUpload: "",
-      photoUpload: "",
-    },
-  });
-  const handleChange = (event: any) => {
-    const fieldName = event.target.name;
-    const newValue = event.target.value;
-    setFormData({
-      ...formData,
-      [fieldName]: newValue,
-    });
-  };
-
+  const [user] = useAuthState(auth);
+  const [formData, setFormData] = useState<any>({});
+  const [errors, setErrors] = useState<any>({});
   const router = useRouter();
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    router.push("/PaymentPlatform");
-    console.log(formData);
+  const handleFileChange = (event: any) => {
+    const fieldName = event.target.name;
+    const file = event.target.files[0];
+    setFormData((prevState: any) => ({
+      ...prevState,
+      [fieldName]: file,
+    }));
   };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    if (!user) {
+      console.error("User not authenticated");
+      return;
+    }
+
+    const uploads = Object.entries(formData).map(
+      async ([key, file]: [string, File]) => {
+        const storageRef = ref(storage, `uploads/${user.uid}/${key}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        return new Promise((resolve, reject) => {
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "% done");
+            },
+            (error) => {
+              console.error("Upload failed:", error);
+              reject(error);
+            },
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                resolve({ [key]: downloadURL });
+              });
+            }
+          );
+        });
+      }
+    );
+
+    try {
+      const results = await Promise.all(uploads);
+      const uploadedFiles = results.reduce(
+        (acc, curr) => ({ ...acc, ...curr }),
+        {}
+      );
+      console.log("Uploaded files:", uploadedFiles);
+      router.push("/PaymentPlatform");
+    } catch (error) {
+      console.error("Error uploading files:", error);
+    }
+  };
+
   return (
     <div className="bg-gray-100 space-y-4">
       <h1>Upload Documents</h1>
       <div className="grid w-full max-w-sm items-center gap-1.5">
         <Label htmlFor="passport">Upload Your Passport</Label>
         <Input
-          id="picture"
+          id="passport"
           type="file"
           name="passportUpload"
-          value={formData.passportUpload}
-          onChange={handleChange}
+          onChange={handleFileChange}
         />
       </div>
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="passport">Upload your Transcript</Label>
+        <Label htmlFor="transcript">Upload your Transcript</Label>
         <Input
-          id="pdf"
+          id="transcript"
+          type="file"
           name="transcriptUpload"
-          type="file"
-          value={formData.transcriptUpload}
-          onChange={handleChange}
+          onChange={handleFileChange}
         />
       </div>
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="passport">Upload your Diploma</Label>
+        <Label htmlFor="diploma">Upload your Diploma</Label>
         <Input
-          id="pdf"
+          id="diploma"
+          type="file"
           name="diplomaUpload"
-          type="file"
-          value={formData.diplomaUpload}
-          onChange={handleChange}
+          onChange={handleFileChange}
         />
       </div>
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="passport">Upload your CV</Label>
+        <Label htmlFor="cv">Upload your CV</Label>
         <Input
-          id="pdf"
+          id="cv"
+          type="file"
           name="cvupload"
-          type="file"
-          value={formData.cvupload}
-          onChange={handleChange}
+          onChange={handleFileChange}
         />
       </div>
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="passport">Upload your Reference Letter</Label>
+        <Label htmlFor="letter">Upload your Reference Letter</Label>
         <Input
-          id="pdf"
+          id="letter"
+          type="file"
           name="letterUpload"
-          type="file"
-          value={formData.letterUpload}
-          onChange={handleChange}
+          onChange={handleFileChange}
         />
       </div>
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="passport">Upload your Photo</Label>
+        <Label htmlFor="photo">Upload your Photo</Label>
         <Input
-          id="picture"
-          name="photoUpload"
+          id="photo"
           type="file"
-          value={formData.photoUpload}
-          onChange={handleChange}
+          name="photoUpload"
+          onChange={handleFileChange}
         />
       </div>
       <Button onClick={handleSubmit}>Submit</Button>

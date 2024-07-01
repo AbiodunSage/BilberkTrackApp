@@ -1,7 +1,7 @@
 import React from "react";
 
 const PaymentWithStripe = () => {
-  return <div>PaymentWithStripe</div>;
+  return <div>Stripe Initialization</div>;
 };
 
 export default PaymentWithStripe;

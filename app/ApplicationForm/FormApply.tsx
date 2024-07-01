@@ -1,384 +1,173 @@
 "use client";
-import { RadioGroupDemo } from "@/components/RadioGroup";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Input } from "@/components/ui/input";
-import { SelectDemo } from "@/components/SelectQualification";
-import { SelectDegree } from "@/components/SelectDesiredCourse";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
-import Data from "../Database/Data";
+import { Input } from "@/components/ui/input";
+import { auth, firestore } from "@/firebase/firebase"; // Ensure you have proper Firebase initialization here
+import { collection, doc, setDoc } from "firebase/firestore";
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/navigation";
 
-const user = Data;
-
-const FormApply = () => {
-  const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    phoneno: "",
-    dateofbirth: "",
-    emailAddress: "",
-    gender: "",
-    countryoforigin: "",
-    placeofbirth: "",
-    parentname: "",
-    parentemail: "",
-    degreeHave: "",
-    diplomatitle: "",
-    Scholarshiop: "",
-    InstitutionName: "",
-    degreePursuit: "",
-    graduationYear: "",
-    schoolCity: "",
-    passportNumber: "",
-    passportDate1: "",
-    passportDate2: "",
-    homeAddress: "",
-    ZipCode: "",
-    city: "",
-    country: "",
-    specificCountry: "",
-    interestedCountry: "",
-    SpecificCountry: "",
-    gdprConsent: "",
-    errors: {
-      firstname: "",
-      lastname: "",
-      phoneno: "",
-      dateofbirth: "",
-      emailAddress: "",
-      gender: "",
-      countryoforigin: "",
-      placeofbirth: "",
-      parentname: "",
-      parentemail: "",
-      degreeHave: "",
-      diplomatitle: "",
-      Scholarshiop: "",
-      InstitutionName: "",
-      degreePursuit: "",
-      graduationYear: "",
-      schoolCity: "",
-      passportNumber: "",
-      passportDate1: "",
-      passportDate2: "",
-      homeAddress: "",
-      ZipCode: "",
-      city: "",
-      country: "",
-      specificCountry: "",
-      interestedCountry: "",
-      SpecificCountry: "",
-      gdprConsent: "",
-    },
-  });
-  const handleChange = (event: any) => {
-    const fieldName = event.target.name;
-    const newValue = event.target.value;
-    setFormData({
-      ...formData,
-      [fieldName]: newValue,
-    });
-  };
+const FormApply: React.FC = () => {
+  const [user] = useAuthState(auth);
+  const [name, setName] = useState<string>("");
+  const [lastname, setLastname] = useState<string>("");
+  const [gender, setGender] = useState<string>("");
+  const [nationality, setNationality] = useState<string>("");
+  const [dob, setDob] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [contact, setContact] = useState<string>("");
+  const [qualification, setQualification] = useState<string>("");
+  const [Institution, setInstitution] = useState<string>("");
 
   const router = useRouter();
-
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    router.push("/UploadFiles");
-    console.log(formData);
-  };
-  return (
-    <>
-      <div className="bg-gray-200 space-y-4">
-        <Input
-          type="text"
-          placeholder="First Name"
-          name="firstname"
-          value={formData.firstname}
-          onChange={handleChange}
-        />
-        <Input
-          type="text"
-          name="lastname"
-          placeholder="Last Name"
-          value={formData.lastname}
-          onChange={handleChange}
-        />
-        <Input
-          type="numbers"
-          name="phoneno"
-          placeholder="Phone No/Whatsapp"
-          value={formData.phoneno}
-          onChange={handleChange}
-        />
-        <Input
-          type="Date"
-          placeholder="Date of Birth"
-          name="dateofbirth"
-          value={formData.dateofbirth}
-          onChange={handleChange}
-        />
+    if (!user) {
+      console.error("User is not authenticated");
+      return;
+    }
+    try {
+      // Reference to the user's document
+      const userDocRef = doc(firestore, "users", user.uid);
 
+      // Reference to the 'applications' sub-collection within the user's document
+      const applicationsCollectionRef = collection(userDocRef, "applications");
+
+      // Reference to a new document within the 'applications' sub-collection
+      const newApplicationDocRef = doc(applicationsCollectionRef);
+
+      await setDoc(newApplicationDocRef, {
+        name,
+        lastname,
+        gender,
+        nationality,
+        dob,
+        address,
+        email,
+        contact,
+        qualification,
+        Institution,
+        uid: user.uid,
+      });
+      console.log("Application submitted");
+    } catch (error) {
+      console.error("Error writing document: ", error);
+    }
+    router.push("/UploadFiles");
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name">First Name:</label>
         <Input
-          type="Email"
-          name="emailAddress"
-          placeholder="Email Address"
-          value={formData.emailAddress}
-          onChange={handleChange}
-        />
-        <RadioGroupDemo />
-        <Input
-          type="Text"
-          name="countryoforigin"
-          placeholder="Country of Origin"
-          value={formData.countryoforigin}
-          onChange={handleChange}
-        />
-        <Input
-          type="Text"
-          name="placeofbirth"
-          placeholder="Place of Birth"
-          value={formData.placeofbirth}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="bg-gray-100 space-y-4">
-        <h1>Guardian Info</h1>
-        <Input
-          type="Text"
-          name="parentname"
-          placeholder="Parent or Guardian Name"
-          value={formData.parentname}
-          onChange={handleChange}
-        />
-        <Input
-          type="Text"
-          name="parentemail"
-          placeholder="Email Address of Guardian "
-          value={formData.parentemail}
-          onChange={handleChange}
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
       </div>
-      <div className="bg-gray-200 space-y-4">
-        <h1>Educational Info</h1>
-        <SelectDemo />
+      <div>
+        <label htmlFor="lastname">Last Name:</label>
         <Input
-          type="Text"
-          name="diplomatitle"
-          placeholder="Title of your Diploma"
-          value={formData.diplomatitle}
-          onChange={handleChange}
-        />
-        <div>
-          <div className="flex items-center space-x-2">
-            <Switch id="airplane-mode" />
-            <Label htmlFor="airplane-mode">
-              Would you like a schorlarship? or Tuition Fee
-            </Label>
-          </div>
-        </div>
-        <Input
-          type="Text"
-          name="InstitutionName"
-          placeholder="Name of the Institution "
-          value={formData.InstitutionName}
-          onChange={handleChange}
-        />
-        <SelectDegree />
-        <Input
-          type="Text"
-          name="graduationYear"
-          placeholder="Graduation Year"
-          value={formData.graduationYear}
-          onChange={handleChange}
-        />
-        <Input
-          type="Text"
-          name="schoolCity"
-          placeholder="City, State/Country"
-          value={formData.schoolCity}
-          onChange={handleChange}
-        />
-        <div className="bg-gray-100 space-y-4">
-          <h1>PassPort Info</h1>
-          <Input
-            type="Text"
-            name="passportNumber"
-            placeholder="Passport Number"
-            value={formData.passportNumber}
-            onChange={handleChange}
-          />
-          <Input
-            type="Date"
-            name="passportDate1"
-            placeholder="Date of Issue"
-            value={formData.passportDate1}
-            onChange={handleChange}
-          />
-          <Input
-            type="Date"
-            name="passportDate2"
-            placeholder="Expiry Date"
-            value={formData.passportDate2}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="bg-gray-200 space-y-4">
-          <h1>Home Address</h1>
-          <Input
-            type="Text"
-            name="homeAddress"
-            placeholder="Home Address"
-            value={formData.homeAddress}
-            onChange={handleChange}
-          />
-          <Input
-            type="Numbers"
-            name="ZipCode"
-            placeholder="ZipCode"
-            value={formData.ZipCode}
-            onChange={handleChange}
-          />
-          <Input
-            type="Text"
-            name="city"
-            placeholder="City"
-            value={formData.city}
-            onChange={handleChange}
-          />
-          <Input
-            type="Text"
-            name="country"
-            placeholder="Country"
-            value={formData.country}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="bg-gray-100 space-y-4">
-          <Input
-            type="Text"
-            name="specificCountry"
-            placeholder="Do you have a specific country or University"
-            value={formData.specificCountry}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="bg-gray-200 space-y-4">
-          <h1>Which Country are you interested in?</h1>
-          <div className="items-top flex space-x-2">
-            <Checkbox
-              id="terms1"
-              name="interestedCountry"
-              value={formData.interestedCountry}
-              onChange={handleChange}
-            />
-            <div className="grid gap-1.5 leading-none">
-              <label
-                htmlFor="terms1"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                European Countries
-              </label>
-            </div>
-          </div>
-          <div className="items-top flex space-x-2">
-            <Checkbox id="terms1" />
-            <div className="grid gap-1.5 leading-none">
-              <label
-                htmlFor="terms1"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Cyprus
-              </label>
-            </div>
-          </div>
-          <div className="items-top flex space-x-2">
-            <Checkbox id="terms1" />
-            <div className="grid gap-1.5 leading-none">
-              <label
-                htmlFor="terms1"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Turkey
-              </label>
-            </div>
-          </div>
-          <div className="items-top flex space-x-2">
-            <Checkbox id="terms1" />
-            <div className="grid gap-1.5 leading-none">
-              <label
-                htmlFor="terms1"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                UK
-              </label>
-            </div>
-          </div>
-          <div className="items-top flex space-x-2">
-            <Checkbox id="terms1" />
-            <div className="grid gap-1.5 leading-none">
-              <label
-                htmlFor="terms1"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Canada
-              </label>
-            </div>
-          </div>
-          <div className="items-top flex space-x-2">
-            <Checkbox id="terms1" />
-            <div className="grid gap-1.5 leading-none">
-              <label
-                htmlFor="terms1"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                Other Asian Countries
-              </label>
-            </div>
-          </div>
-        </div>
-        <Input
-          type="Text"
-          name="SpecificCountry"
-          placeholder="Specific Country of Choice"
-          value={formData.SpecificCountry}
-          onChange={handleChange}
+          type="text"
+          id="lastname"
+          value={lastname}
+          onChange={(e) => setLastname(e.target.value)}
+          required
         />
       </div>
-      <div className="bg-gray-100 space-y-4">
-        <h1>GDPR consent</h1>
-        <div className="items-top flex space-x-2">
-          <Checkbox
-            id="terms1"
-            name="gdprConsent"
-            value={formData.gdprConsent}
-            onChange={handleChange}
-          />
-          <div className="grid gap-1.5 leading-none">
-            <label
-              htmlFor="terms1"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              GDPR Consent
-            </label>
-            <p>
-              Agree on our{" "}
-              <a
-                className="no-underline text-yellow-600"
-                href="https://bilberktravelagency.com/elementor-5359/"
-              >
-                terms and condition
-              </a>{" "}
-              for using your submitted data?
-            </p>
-          </div>
-        </div>
+      <div>
+        <label htmlFor="nationality">Nationality:</label>
+        <Input
+          type="text"
+          id="nationality"
+          value={nationality}
+          onChange={(e) => setNationality(e.target.value)}
+          required
+        />
       </div>
-      <Button onClick={handleSubmit}>Submit</Button>
-    </>
+      <div>
+        <label htmlFor="Gender">Gender:</label>
+        <select
+          id="Gender"
+          value={gender}
+          onChange={(e) => setGender(e.target.value)}
+          required
+        >
+          <option value="">Gender</option>
+          <option value="Male">MALE</option>
+          <option value="Female">FEMALE</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="dob">Date of Birth:</label>
+        <Input
+          type="date"
+          id="dob"
+          value={dob}
+          onChange={(e) => setDob(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="email">Email:</label>
+        <Input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="contact">Contact:</label>
+        <Input
+          type="number"
+          id="contact"
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="address">Address:</label>
+        <Input
+          type="text"
+          id="address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="Institution">Institution Attended:</label>
+        <Input
+          type="text"
+          id="Institution"
+          value={Institution}
+          onChange={(e) => setInstitution(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor="qualification">Qualification:</label>
+        <select
+          id="qualification"
+          value={qualification}
+          onChange={(e) => setQualification(e.target.value)}
+          required
+        >
+          <option value="">Select a qualification</option>
+          <option value="SSCE">SSCE</option>
+          <option value="Bachelor's Degree">Bachelor's Degree</option>
+          <option value="Master's Degree">Master's Degree</option>
+        </select>
+      </div>
+      <Button type="submit">Submit</Button>
+    </form>
   );
 };
 
