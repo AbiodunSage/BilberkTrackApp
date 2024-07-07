@@ -7,6 +7,7 @@ import { UserNav } from "./components/user-nav";
 import TrackPage from "./components/track-page";
 import { SiteFooter } from "./components/Footer";
 import { Caroussel } from "@/components/Caroussel";
+import ProfilePage from "./components/ProfilePage";
 
 export default function DashboardPage() {
   return (
@@ -148,16 +149,22 @@ export default function DashboardPage() {
                   </CardContent>
                 </Card>
               </div>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                <Card className="col-span-4">
+              <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-7">
+                <Card className="col-span-2 ">
+                  <CardTitle>Profile</CardTitle>
+                  <CardContent>
+                    <ProfilePage />
+                  </CardContent>
+                </Card>
+                <Card className="col-span-3">
                   <CardHeader>
-                    <CardTitle>TrackPage</CardTitle>
+                    <CardTitle>Check your Application status</CardTitle>
                     <TrackPage />
                   </CardHeader>
                   <CardContent className="pl-2"></CardContent>
                 </Card>
-                <Card className="col-span-3 ">
-                  <CardTitle>Overview</CardTitle>
+                <Card className="col-span-2 ">
+                  <CardTitle>Courses</CardTitle>
                   <CardContent>
                     <Caroussel />
                   </CardContent>
