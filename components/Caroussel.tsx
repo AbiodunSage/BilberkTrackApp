@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Blogs from "../app/Board/components/Blogs";
+import Blogs from "../app/Blogs/page";
 
 export function Caroussel() {
   const plugin = React.useRef(
