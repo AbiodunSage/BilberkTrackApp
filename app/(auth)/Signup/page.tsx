@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import useSignUpWithEmailAndPassword from "@/hooks/useSignUpWithEmailAndPassword";
+import useSignUpWithEmailAndPassword from "../../../hooks/useSignUpWithEmailAndPassword";
 import {
   Card,
   CardContent,
@@ -31,7 +31,7 @@ const Signuppage = () => {
 
   const { loading, error, signup } = useSignUpWithEmailAndPassword();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     signup(formData);
   };
   return (

@@ -5,9 +5,11 @@ import { MainNav } from "./components/main-nav";
 import HelloUser from "./components/Welcome";
 import { UserNav } from "./components/user-nav";
 import TrackPage from "./components/track-page";
-import { SiteFooter } from "./components/Footer";
+import { SiteFooter } from "./components/SocialFooter";
 import { Caroussel } from "@/components/Caroussel";
 import ProfilePage from "./components/ProfilePage";
+import ParticlesComponent from "@/components/ParticleComponent";
+import NewsLetter from "./components/NewsLetter";
 
 export default function DashboardPage() {
   return (
@@ -28,6 +30,9 @@ export default function DashboardPage() {
           className="hidden dark:block"
         />
       </div> */}
+      <div style={{ position: "relative" }}>
+        <ParticlesComponent />
+      </div>
       <div className=" flex-col md:flex">
         <div className="border-b">
           <div className="flex h-16 items-center px-4">
@@ -45,23 +50,11 @@ export default function DashboardPage() {
           <Tabs defaultValue="overview" className="space-y-4">
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card>
+                <Card className="hover:bg-yellow-500">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
+                    <CardTitle className="text-sm font-medium ">
                       Number of Applications
                     </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                    </svg>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">5000+</div>
@@ -70,25 +63,11 @@ export default function DashboardPage() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="hover:bg-yellow-500">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
                       Invoice
                     </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                      <circle cx="9" cy="7" r="4" />
-                      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                    </svg>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">+Invoice</div>
@@ -97,24 +76,11 @@ export default function DashboardPage() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="hover:bg-yellow-500">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
                       Learn More About your destination
                     </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <rect width="20" height="14" x="2" y="5" rx="2" />
-                      <path d="M2 10h20" />
-                    </svg>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">+</div>
@@ -123,23 +89,11 @@ export default function DashboardPage() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="hover:bg-yellow-500">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
                       Tasks to Do
                     </CardTitle>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-4 w-4 text-muted-foreground"
-                    >
-                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-                    </svg>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">+1</div>
@@ -173,6 +127,7 @@ export default function DashboardPage() {
             </TabsContent>
           </Tabs>
         </div>
+        <NewsLetter />
         <SiteFooter />
       </div>
     </>

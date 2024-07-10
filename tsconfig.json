@@ -27,7 +27,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/(auth)/Signup/signup.js",
-    "app/(auth)/login/login.js"
+    "app/(auth)/login/login.js",
+    "hooks/useSignUpWithEmailAndPassword.js"
   ],
   "exclude": ["node_modules"]
 }

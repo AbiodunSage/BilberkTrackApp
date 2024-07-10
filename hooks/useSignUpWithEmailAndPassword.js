@@ -9,16 +9,16 @@ import {
   where,
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
-import useShowToast from "../hooks/useShowToast";
+import useShowToast from "@/hooks/useShowToast";
 import useAuthStore from "../store/authStore";
 import { useState } from "react";
 const useSignUpWithEmailAndPassword = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-
+  const showToast = useShowToast();
   const loginUser = useAuthStore((state) => state.login);
   const router = useRouter();
-  const showToast = useShowToast();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -58,12 +58,14 @@ const useSignUpWithEmailAndPassword = () => {
         showToast("destructive", "something went wrong", "Error");
         return;
       }
+      router.push("/Login");
       if (newUser) {
         const userDoc = {
           uid: newUser.user.uid,
           email: formData.email,
           username: formData.username,
           fullname: formData.fullname,
+          appForm: [],
           createdAt: Date.now(),
         };
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);

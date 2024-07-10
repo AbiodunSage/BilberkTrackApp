@@ -54,7 +54,7 @@ const FormApply: React.FC = () => {
     } catch (error) {
       console.error("Error writing document: ", error);
     }
-    router.push("https://donate.stripe.com/eVa29zalDeKR9FK28h");
+    router.push("/UploadFiles");
   };
 
   return (
