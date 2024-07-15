@@ -4,13 +4,12 @@ import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { MainNav } from "./components/main-nav";
 import HelloUser from "./components/Welcome";
 import { UserNav } from "./components/user-nav";
-import TrackPage from "./components/track-page";
 import { SiteFooter } from "./components/SocialFooter";
 import { Caroussel } from "@/components/Caroussel";
 import ProfilePage from "./components/ProfilePage";
 import ParticlesComponent from "@/components/ParticleComponent";
 import NewsLetter from "./components/NewsLetter";
-
+import TrackPage from "../Tracking/page";
 export default function DashboardPage() {
   return (
     <>
