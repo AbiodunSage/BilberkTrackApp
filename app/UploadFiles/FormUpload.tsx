@@ -23,121 +23,128 @@ const FormUpload = () => {
     }));
   };
 
+  const handleFileUploads = async (
+    formData: { [key: string]: File },
+    user: { uid: string }
+  ) => {
+    try {
+      const uploadPromises = Object.entries(formData).map(
+        ([key, file]: [string, File]) => {
+          const storageRef = ref(storage, `uploads/${user.uid}/${key}`);
+          const uploadTask = uploadBytesResumable(storageRef, file);
+
+          return new Promise<{ [key: string]: string }>((resolve, reject) => {
+            uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log("Upload is " + progress + "% done");
+              },
+              (error) => {
+                console.error("Upload failed:", error);
+                reject(error);
+              },
+              () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  resolve({ [key]: downloadURL });
+                });
+              }
+            );
+          });
+        }
+      );
+
+      const results = await Promise.all(uploadPromises);
+      const downloadURLs = results.reduce(
+        (acc, cur) => ({ ...acc, ...cur }),
+        {}
+      );
+      console.log("All files uploaded successfully:", downloadURLs);
+      router.push("https://donate.stripe.com/eVa29zalDeKR9FK28h");
+
+      return downloadURLs;
+    } catch (error) {
+      console.error("Failed to upload files:", error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    router.push("https://donate.stripe.com/eVa29zalDeKR9FK28h");
+
     if (!user) {
       console.error("User not authenticated");
       return;
     }
 
-    const handleFileUploads = async (
-      formData: { [key: string]: File },
-      user: { uid: string }
-    ) => {
-      try {
-        const uploadPromises = Object.entries(formData).map(
-          ([key, file]: [string, File]) => {
-            const storageRef = ref(storage, `uploads/${user.uid}/${key}`);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-            return new Promise<{ [key: string]: string }>((resolve, reject) => {
-              uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                  const progress =
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log("Upload is " + progress + "% done");
-                },
-                (error) => {
-                  console.error("Upload failed:", error);
-                  reject(error);
-                },
-                () => {
-                  getDownloadURL(uploadTask.snapshot.ref).then(
-                    (downloadURL) => {
-                      resolve({ [key]: downloadURL });
-                    }
-                  );
-                }
-              );
-            });
-          }
-        );
-
-        const results = await Promise.all(uploadPromises);
-        const downloadURLs = results.reduce(
-          (acc, cur) => ({ ...acc, ...cur }),
-          {}
-        );
-        console.log("All files uploaded successfully:", downloadURLs);
-
-        return downloadURLs;
-      } catch (error) {
-        console.error("Failed to upload files:", error);
-        throw error;
-      }
-    };
+    try {
+      await handleFileUploads(formData, user);
+    } catch (error) {
+      console.error("Error during file upload:", error);
+    }
   };
 
   return (
     <div className="bg-gray-100 space-y-4">
       <h1>Upload Documents</h1>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="passport">Upload Your Passport</Label>
-        <Input
-          id="passport"
-          type="file"
-          name="passportUpload"
-          onChange={handleFileChange}
-        />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="transcript">Upload your Transcript</Label>
-        <Input
-          id="transcript"
-          type="file"
-          name="transcriptUpload"
-          onChange={handleFileChange}
-        />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="diploma">Upload your Diploma</Label>
-        <Input
-          id="diploma"
-          type="file"
-          name="diplomaUpload"
-          onChange={handleFileChange}
-        />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="cv">Upload your CV</Label>
-        <Input
-          id="cv"
-          type="file"
-          name="cvupload"
-          onChange={handleFileChange}
-        />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="letter">Upload your Reference Letter</Label>
-        <Input
-          id="letter"
-          type="file"
-          name="letterUpload"
-          onChange={handleFileChange}
-        />
-      </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label htmlFor="photo">Upload your Photo</Label>
-        <Input
-          id="photo"
-          type="file"
-          name="photoUpload"
-          onChange={handleFileChange}
-        />
-      </div>
-      <Button onClick={handleSubmit}>Submit</Button>
+      <form onSubmit={handleSubmit}>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="passport">Upload Your Passport</Label>
+          <Input
+            id="passport"
+            type="file"
+            name="passportUpload"
+            onChange={handleFileChange}
+          />
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="transcript">Upload your Transcript</Label>
+          <Input
+            id="transcript"
+            type="file"
+            name="transcriptUpload"
+            onChange={handleFileChange}
+          />
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="diploma">Upload your Diploma</Label>
+          <Input
+            id="diploma"
+            type="file"
+            name="diplomaUpload"
+            onChange={handleFileChange}
+          />
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="cv">Upload your CV</Label>
+          <Input
+            id="cv"
+            type="file"
+            name="cvUpload"
+            onChange={handleFileChange}
+          />
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="letter">Upload your Reference Letter</Label>
+          <Input
+            id="letter"
+            type="file"
+            name="letterUpload"
+            onChange={handleFileChange}
+          />
+        </div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor="photo">Upload your Photo</Label>
+          <Input
+            id="photo"
+            type="file"
+            name="photoUpload"
+            onChange={handleFileChange}
+          />
+        </div>
+        <Button type="submit">Submit</Button>
+      </form>
     </div>
   );
 };

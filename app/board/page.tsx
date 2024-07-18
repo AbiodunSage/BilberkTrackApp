@@ -109,14 +109,12 @@ export default function DashboardPage() {
                     <ProfilePage />
                   </CardContent>
                 </Card>
-                <Card className="col-span-3">
-                  <CardHeader>
-                    <CardTitle>Check your Application status</CardTitle>
+                <Card className="col-span-2">
+                  <div className="bg-gradient-to-r from-yellow-100 to-yellow-600 flex justify-center items-center">
                     <TrackPage />
-                  </CardHeader>
-                  <CardContent className="pl-2"></CardContent>
+                  </div>
                 </Card>
-                <Card className="col-span-2 ">
+                <Card className="col-span-3 ">
                   <CardTitle>Courses</CardTitle>
                   <CardContent>
                     <Caroussel />

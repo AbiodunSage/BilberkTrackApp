@@ -1,4 +1,5 @@
 "use client";
+import DialogButton from "@/components/Dialog";
 import PageTitle from "@/components/PageTitle";
 import useGetUserProfile from "@/hooks/useGetUserProfile";
 import Image from "next/image";
@@ -32,6 +33,7 @@ const ProfilePage = () => {
             reiciendis blanditiis animi amet ullam tenetur adipisci optio,
             veniam, alias quaerat commodi temporibus in.
           </div>
+          <DialogButton />
         </div>
       </div>
     </>

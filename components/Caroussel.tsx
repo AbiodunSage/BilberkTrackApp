@@ -14,11 +14,20 @@ import {
 } from "@/components/ui/carousel";
 
 const blogData = [
-  { src: "/applycard.png", link: "/applycard" },
-  { src: "/bilberklogo.jpg", link: "/google.com" },
-  { src: "/logo.png", link: "/ApplicationForm" },
-  { src: "/mickey.png", link: "/UploadFiles" },
-  { src: "/registrationImage.png", link: "Signup" },
+  {
+    src: "/1.svg",
+    link: "https://bilberktravelagency.com/how-to-get-your-visa-to-study-abroad/",
+  },
+  {
+    src: "/2.svg",
+    link: "https://bilberktravelagency.com/prepare-for-your-study-abroad-interview/",
+  },
+  { src: "/3.svg", link: "/ApplicationForm" },
+  {
+    src: "/4.svg",
+    link: "https://bilberktravelagency.com/learning-more-about-your-destination-and-finding-a-part-time-job-after-getting-admission-to-study-abroad/",
+  },
+  { src: "/5.svg", link: "Signup" },
 ];
 
 export function Caroussel() {
@@ -39,11 +48,16 @@ export function Caroussel() {
             <div className="p-1">
               <Card>
                 <Link href={item.link}>
-                  <Image
+                  <img
                     src={item.src}
-                    width={200}
-                    height={200}
+                    /* width={300}
+                    height={50} */
                     alt={`Blog Image ${index + 1}`}
+                    style={{
+                      width: "",
+                      height: "",
+                      objectFit: "fill",
+                    }}
                   />
                 </Link>
               </Card>
