@@ -14,17 +14,42 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { auth } from "@/firebase/firebase";
+import { auth, firestore } from "@/firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+interface UserProfileData {
+  profilePicture?: string;
+}
 
 export function UserNav() {
   const [user] = useAuthState(auth);
+  const [profileData, setProfileData] = useState<UserProfileData | null>(null);
+
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      if (user) {
+        const userDocRef = doc(firestore, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+          setProfileData(userDoc.data() as UserProfileData);
+        } else {
+          console.log("No such document!");
+        }
+      }
+    };
+
+    fetchProfileData();
+  }, [user]);
+  const profilePicture = profileData?.profilePicture ?? "/mickey.png";
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/mickey.png" alt="@shadcn" />
+            <AvatarImage src={profilePicture} alt="pic" />
             <AvatarFallback>SC</AvatarFallback>
           </Avatar>
         </Button>

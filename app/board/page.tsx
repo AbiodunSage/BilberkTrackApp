@@ -65,13 +65,27 @@ export default function DashboardPage() {
                 <Card className="hover:bg-yellow-500">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Invoice
+                      Task's to Do
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">+Invoice</div>
                     <p className="text-xs text-muted-foreground">
-                      view your invoice,paid or unpaid
+                      Hello,pls complete your application
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:bg-yellow-500">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Invoice
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">+1</div>
+                    <p className="text-xs text-muted-foreground">
+                      View your Invoice
                     </p>
                   </CardContent>
                 </Card>
@@ -88,19 +102,6 @@ export default function DashboardPage() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card className="hover:bg-yellow-500">
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Tasks to Do
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+1</div>
-                    <p className="text-xs text-muted-foreground">
-                      Hello, pls complete your application
-                    </p>
-                  </CardContent>
-                </Card>
               </div>
               <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-7">
                 <Card className="col-span-2 ">
@@ -110,7 +111,7 @@ export default function DashboardPage() {
                   </CardContent>
                 </Card>
                 <Card className="col-span-2">
-                  <div className="bg-gradient-to-r from-yellow-100 to-yellow-600 flex justify-center items-center">
+                  <div className=" flex justify-center items-center">
                     <TrackPage />
                   </div>
                 </Card>

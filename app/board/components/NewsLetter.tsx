@@ -15,11 +15,26 @@ import {
 
 const NewsLetter = () => {
   const News = [
-    { name: "story story", link: "/applycard" },
-    { name: "story story", link: "/applycard" },
-    { name: "story story", link: "/applycard" },
-    { name: "story story", link: "/applycard" },
-    { name: "story story", link: "/applycard" },
+    {
+      name: "The Ultimate guide to studying Abroad",
+      link: "https://bilberktravelagency.com/the-ultimate-guide-to-studying-abroad-steps-to-get-started/",
+    },
+    {
+      name: "your gateway to excellence",
+      link: "https://bilberktravelagency.com/your-gateway-to-excellence-study-in-cyprus-with-bilberk-travel-agency/",
+    },
+    {
+      name: "study in italy",
+      link: "https://bilberktravelagency.com/unlock-your-potential-study-in-italy-with-bilberk-travel-agency/",
+    },
+    {
+      name: "study in romania",
+      link: "https://bilberktravelagency.com/your-ultimate-guide-to-studying-in-romania/",
+    },
+    {
+      name: "Learn more exciting stuffs,visit our blog",
+      link: "https://bilberktravelagency.com/blog/",
+    },
   ];
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
