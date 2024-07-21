@@ -10,7 +10,7 @@ import ProfilePage from "./components/ProfilePage";
 import ParticlesComponent from "@/components/ParticleComponent";
 import NewsLetter from "./components/NewsLetter";
 import TrackPage from "../Tracking/page";
-export default function DashboardPage() {
+const Board = () => {
   return (
     <>
       {/* <div className="md:hidden">
@@ -130,4 +130,6 @@ export default function DashboardPage() {
       </div>
     </>
   );
-}
+};
+
+export default Board;
