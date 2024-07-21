@@ -10,7 +10,7 @@ import ProfilePage from "./components/ProfilePage";
 import ParticlesComponent from "@/components/ParticleComponent";
 import NewsLetter from "./components/NewsLetter";
 import TrackPage from "../Tracking/page";
-const Board = () => {
+const BoardPage = () => {
   return (
     <>
       {/* <div className="md:hidden">
@@ -132,4 +132,4 @@ const Board = () => {
   );
 };
 
-export default Board;
+export default BoardPage;
