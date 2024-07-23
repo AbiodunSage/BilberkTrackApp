@@ -47,13 +47,13 @@ const ProfilePage = () => {
           />
         </div>
         <div className="flex flex-col justify-center items-center">
-          <div className=" bg-yellow-500 border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
+          <div className="  border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
             <PageTitle title={`Name:${userProfile?.username}`} />
           </div>
-          <div className=" bg-yellow-500 border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
+          <div className=" border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
             <PageTitle title={`Email:${userProfile?.email}`} />
           </div>
-          <div className=" bg-yellow-500 border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
+          <div className="  border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
             <PageTitle title="Bio" />
             {profileData?.bio}
           </div>

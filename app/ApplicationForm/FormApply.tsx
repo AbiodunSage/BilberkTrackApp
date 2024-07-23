@@ -129,10 +129,13 @@ const FormApply: React.FC = () => {
         <h1 className="text-3xl uppercase text-sky-500">
           Personal Information
         </h1>
-        <div className="grid grid-rows-4 grid-flow-col gap-4">
+        <div className="grid grid-rows-5 grid-flow-col gap-4">
           <div>
-            <label htmlFor="name">First Name:</label>
+            <label htmlFor="name" className="font-bold">
+              First Name:
+            </label>
             <Input
+              className="shadow-xl border-stone-950 required:border-red-500"
               type="text"
               id="name"
               value={name}
@@ -141,8 +144,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="name">Middle Name:</label>
+            <label htmlFor="name" className="font-bold">
+              Middle Name:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="name"
               value={middlename}
@@ -151,8 +157,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="lastname">Last Name:</label>
+            <label htmlFor="lastname" className="font-bold">
+              Last Name:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="lastname"
               value={lastname}
@@ -161,8 +170,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Father's Name">Father's Name:</label>
+            <label htmlFor="Father's Name" className="font-bold">
+              Father's Name:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="nameofFather"
               value={nameofFather}
@@ -171,8 +183,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Mother's Name">Mother's Name :</label>
+            <label htmlFor="Mother's Name" className="font-bold">
+              Mother's Name :
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="nameofMother"
               value={nameofMother}
@@ -181,8 +196,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="nationality">Nationality:</label>
+            <label htmlFor="nationality" className="font-bold">
+              Nationality:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="nationality"
               value={nationality}
@@ -191,7 +209,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Gender">Gender:</label>
+            <label htmlFor="Gender" className="font-bold">
+              Gender:
+            </label>
             <select
               id="Gender"
               value={gender}
@@ -204,10 +224,11 @@ const FormApply: React.FC = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="Coutry of Residence">
+            <label htmlFor="Coutry of Residence" className="font-bold">
               Country of Residence Name:
             </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="countryOfResidence"
               value={countryOfresidence}
@@ -216,7 +237,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="dob">Date of Birth:</label>
+            <label htmlFor="dob" className="font-bold">
+              Date of Birth:
+            </label>
             <Input
               type="date"
               id="dob"
@@ -226,8 +249,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="place of birth">Place of Birth:</label>
+            <label htmlFor="place of birth" className="font-bold">
+              Place of Birth:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="placeofbirth"
               value={placeOfBirth}
@@ -236,8 +262,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Country of Birth">Country of Birth:</label>
+            <label htmlFor="Country of Birth" className="font-bold">
+              Country of Birth:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="coutry of birth"
               value={countryofBirth}
@@ -246,7 +275,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Marital Status">Marital status:</label>
+            <label htmlFor="Marital Status" className="font-bold">
+              Marital status:
+            </label>
             <select
               id="Marital Status"
               value={maritalStatus}
@@ -261,8 +292,11 @@ const FormApply: React.FC = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email" className="font-bold">
+              Email:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="email"
               id="email"
               value={email}
@@ -271,8 +305,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="contact">Contact:</label>
+            <label htmlFor="contact" className="font-bold">
+              Contact:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="number"
               id="contact"
               value={contact}
@@ -281,8 +318,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="address">Address:</label>
+            <label htmlFor="address" className="font-bold">
+              Address:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="address"
               value={address}
@@ -296,8 +336,11 @@ const FormApply: React.FC = () => {
         </h1>
         <div className="grid grid-rows-3 grid-flow-col gap-4">
           <div>
-            <label htmlFor="passportNumber">passport Number:</label>
+            <label htmlFor="passportNumber" className="font-bold">
+              passport Number:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="number"
               id="passportNumber"
               value={passportNumber}
@@ -306,7 +349,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="issue Date">Issue Date:</label>
+            <label htmlFor="issue Date" className="font-bold">
+              Issue Date:
+            </label>
             <Input
               type="date"
               id="issue date"
@@ -316,8 +361,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="IssuedBy">Issued By:</label>
+            <label htmlFor="IssuedBy" className="font-bold">
+              Issued By:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="Issued By"
               value={issuedBy}
@@ -326,7 +374,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Expiry Date">Expiry Date:</label>
+            <label htmlFor="Expiry Date" className="font-bold">
+              Expiry Date:
+            </label>
             <Input
               type="date"
               id="Expiry date"
@@ -336,8 +386,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="NIN">Identification Number:</label>
+            <label htmlFor="NIN" className="font-bold">
+              Identification Number:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="nin"
               value={nin}
@@ -349,10 +402,11 @@ const FormApply: React.FC = () => {
         <h1 className="text-3xl uppercase text-sky-500">STUDY INFORMATION</h1>
         <div className="grid grid-rows-4 grid-flow-col gap-4">
           <div>
-            <label htmlFor="previous level of study">
+            <label htmlFor="previous level of study" className="font-bold">
               Previous Level of Study:
             </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="previous level of study"
               value={PreviousLevelofStudy}
@@ -361,10 +415,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="current level of Education">
+            <label htmlFor="current level of Education" className="font-bold">
               Current Level of Education:
             </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="currret leveldof education"
               value={currentLevelOfEducation}
@@ -373,8 +428,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="Institution">School Grdauated from:</label>
+            <label htmlFor="Institution" className="font-bold">
+              School Grdauated from:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="Institution"
               value={Institution}
@@ -383,7 +441,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="year of grdauation">year of grdauation:</label>
+            <label htmlFor="year of grdauation" className="font-bold">
+              year of grdauation:
+            </label>
             <Input
               type="date"
               id="year of graduation"
@@ -393,7 +453,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="DiplomaObtained">DiplomaObtained:</label>
+            <label htmlFor="DiplomaObtained" className="font-bold">
+              DiplomaObtained:
+            </label>
             <select
               id="DiplomaObtained"
               value={DiplomaObtained}
@@ -407,8 +469,11 @@ const FormApply: React.FC = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="CGPA">CGPA:</label>
+            <label htmlFor="CGPA" className="font-bold">
+              CGPA:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="CGPA"
               value={CGPA}
@@ -417,7 +482,9 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="I am applying for">I am applying for:</label>
+            <label htmlFor="I am applying for" className="font-bold">
+              I am applying for:
+            </label>
             <select
               id="i am applying for"
               value={iamapplyingfor}
@@ -431,8 +498,11 @@ const FormApply: React.FC = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="atwhat university">At what University:</label>
+            <label htmlFor="atwhat university" className="font-bold">
+              At what University:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="at what university"
               value={atwhatUniversity}
@@ -441,8 +511,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="in which country">In which Country:</label>
+            <label htmlFor="in which country" className="font-bold">
+              In which Country:
+            </label>
             <Input
+              className="shadow-xl required:border-red-500"
               type="text"
               id="in which country"
               value={inWhichCountry}
@@ -456,10 +529,14 @@ const FormApply: React.FC = () => {
         </h1>
         <div className="grid grid-rows-4 grid-flow-col gap-4">
           <div>
-            <label htmlFor="which country are you interested in">
+            <label
+              htmlFor="which country are you interested in"
+              className="font-bold"
+            >
               Which Country are you interested in:
             </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="which coutry are you interested in"
               value={interestedCountry}
@@ -467,10 +544,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="what course">
+            <label htmlFor="what course" className="font-bold">
               Which Course are you interested in:
             </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="which course are you interested in"
               value={whatcourse}
@@ -478,8 +556,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="tuition Budget">Whats your tuition Budget:</label>
+            <label htmlFor="tuition Budget" className="font-bold">
+              Whats your tuition Budget:
+            </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="whats your tuition budget"
               value={tuitionbudget}
@@ -490,10 +571,11 @@ const FormApply: React.FC = () => {
         <h1 className="text-3xl uppercase text-sky-500"> TRAVEL INFORMATION</h1>
         <div className="grid grid-rows-4 grid-flow-col gap-4">
           <div>
-            <label htmlFor="have you travelled before">
+            <label htmlFor="have you travelled before" className="font-bold">
               Have you travelled before:
             </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="Have youh travelled before"
               value={Haveyoutravelledbefore}
@@ -501,10 +583,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="consolate">
+            <label htmlFor="consolate" className="font-bold">
               Have you gotten refusal before a consolate:
             </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="consolate"
               value={refussalBeforeConsulate}
@@ -512,8 +595,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="bank statement">Amount for Bank Statement:</label>
+            <label htmlFor="bank statement" className="font-bold">
+              Amount for Bank Statement:
+            </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="statement"
               value={amountforBankStatement}
@@ -521,8 +607,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="sponsor">who is your sponsor:</label>
+            <label htmlFor="sponsor" className="font-bold">
+              who is your sponsor:
+            </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="sponsor"
               value={sponsor}
@@ -530,10 +619,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="relationship with sponsor">
+            <label htmlFor="relationship with sponsor" className="font-bold">
               Relationship with sponsor:
             </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="relationship with sponsor"
               value={relationshipwithsponsor}
@@ -541,8 +631,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="sponsor work">Where does your sponsor work?:</label>
+            <label htmlFor="sponsor work" className="font-bold">
+              Where does your sponsor work?:
+            </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="sponsor work"
               value={sponsorworkplace}
@@ -550,10 +643,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="approximate monthly earning">
+            <label htmlFor="approximate monthly earning" className="font-bold">
               Your Sponsor Approximate Monthly Earning:
             </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="monthly"
               value={sponsorapproximatesalaryMonth}
@@ -561,10 +655,11 @@ const FormApply: React.FC = () => {
             />
           </div>
           <div>
-            <label htmlFor="approximate yearly earning">
+            <label htmlFor="approximate yearly earning" className="font-bold">
               Your Sponsor Approximate Yearly Earning:
             </label>
             <Input
+              className="shadow-xl border-stone-950"
               type="text"
               id="yearly"
               value={sponsorapproximatesalaryYear}

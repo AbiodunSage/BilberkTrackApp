@@ -27,6 +27,7 @@ const LoginPage = () => {
   const { loading, error, login } = useLogin();
   const handleSubmit = async () => {
     await login(formData);
+    router.push("/board");
   };
   return (
     <>

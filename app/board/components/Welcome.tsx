@@ -28,7 +28,7 @@ const HelloUser: React.FC = () => {
   }
   return (
     <>
-      <div>welcome {userProfile.username}</div>
+      <div className="font-bold">welcome {userProfile.username}</div>
     </>
   );
 };

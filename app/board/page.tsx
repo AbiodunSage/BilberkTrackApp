@@ -55,21 +55,20 @@ const BoardPage = () => {
                       Number of Applications
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="shadow-2xl">
                     <div className="text-2xl font-bold">5000+</div>
                     <p className="text-xs text-muted-foreground">
                       +20.1% from last month
                     </p>
                   </CardContent>
                 </Card>
-                <Card className="hover:bg-yellow-500">
+                <Card className="hover:bg-yellow-500 shadow-2xl">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
                       Task's to Do
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+Invoice</div>
                     <p className="text-xs text-muted-foreground">
                       Hello,pls complete your application
                     </p>
@@ -82,7 +81,7 @@ const BoardPage = () => {
                       Invoice
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="shadow-2xl">
                     <div className="text-2xl font-bold">+1</div>
                     <p className="text-xs text-muted-foreground">
                       View your Invoice
@@ -95,37 +94,32 @@ const BoardPage = () => {
                       Learn More About your destination
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="shadow-2xl">
                     <div className="text-2xl font-bold">+</div>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground ">
                       learn more about your destination
                     </p>
                   </CardContent>
                 </Card>
               </div>
               <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-7">
-                <Card className="col-span-2 ">
-                  <CardTitle>Profile</CardTitle>
-                  <CardContent>
-                    <ProfilePage />
-                  </CardContent>
-                </Card>
-                <Card className="col-span-2">
-                  <div className=" flex justify-center items-center">
-                    <TrackPage />
-                  </div>
-                </Card>
-                <Card className="col-span-3 ">
-                  <CardTitle>Courses</CardTitle>
-                  <CardContent>
-                    <Caroussel />
-                  </CardContent>
-                </Card>
+                {/* <CardTitle>Profile</CardTitle> */}
+                <CardContent className="col-span-2  bg-yellow-500 shadow-2xl rounded-full">
+                  <ProfilePage />
+                </CardContent>
+
+                <div className="col-span-2 bg-yellow-500 flex justify-center items-center shadow-2xl rounded-full">
+                  <TrackPage />
+                </div>
+
+                <div className=" col-span-3 shadow-2xl">
+                  <Caroussel />
+                </div>
               </div>
             </TabsContent>
           </Tabs>
         </div>
-        <NewsLetter />
+        {/* <NewsLetter /> */}
         <SiteFooter />
       </div>
     </>
