@@ -136,36 +136,34 @@ const TrackPage: React.FC = () => {
   };
 
   return (
-    /*   <ScrollArea className="h-[300px] w-[450px] rounded-md border p-4"> */
-    <div className="space-y-8">
+    <div className="space-y-8 p-4 sm:p-6 md:p-8 lg:p-10">
       <PageTitle title="Application Status" />
       <div className="space-y-8">
-        <div className="flex flex-wrap border-4 rounded-2xl space-x-6 px-8">
+        <div className="flex flex-wrap items-center border-4 rounded-2xl space-x-4 sm:space-x-6 px-4 sm:px-8">
           <div>Application Submitted</div>
           {applicationSubmitted ? <Check /> : <Minus />}
         </div>
       </div>
       <div className="space-y-8">
-        <div className="flex flex-wrap border-4 rounded-2xl space-x-6 px-8">
+        <div className="flex flex-wrap items-center border-4 rounded-2xl space-x-4 sm:space-x-6 px-4 sm:px-8">
           <div>File Uploaded</div>
           {uploadsFolderUpdated ? <Check /> : <Minus />}
         </div>
       </div>
       <div className="space-y-8">
-        <div className="flex flex-wrap border-4 rounded-2xl space-x-6 px-8">
+        <div className="flex flex-wrap items-center border-4 rounded-2xl space-x-4 sm:space-x-6 px-4 sm:px-8">
           <div>Payment</div>
           {userData?.Payment ? <Check /> : <Minus />}
         </div>
       </div>
       <div className="space-y-8">
-        <div className="flex flex-wrap border-4 rounded-2xl space-x-6 px-8">
+        <div className="flex flex-wrap items-center border-4 rounded-2xl space-x-4 sm:space-x-6 px-4 sm:px-8">
           <div>Visa Processing</div>
           {userData?.VisaProcessing ? <Check /> : <Minus />}
         </div>
       </div>
       <Progress value={ProgressBar()} />
     </div>
-    /* </ScrollArea> */
   );
 };
 

@@ -36,75 +36,78 @@ const Signuppage = () => {
   };
   return (
     <>
-      <Card className="mx-auto max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-xl">Sign Up</CardTitle>
-          <CardDescription>
-            Enter your information to create an account
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4">
-            <div className="grid grid-cols-2 gap-4">
+      <div className="flex flex-row items-center justify-center ">
+        <Card className="mx-auto max-w-sm border-solid border-2 border-yellow-500  rounded-lg shadow-2xl m-8">
+          <CardHeader>
+            <CardTitle className="text-xl">Sign Up</CardTitle>
+            <CardDescription>
+              Enter your information to create an account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="first-name">First name</Label>
+                  <Input
+                    id="username"
+                    name="username"
+                    placeholder="SAGE"
+                    required
+                    value={formData.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="last-name">Last name</Label>
+                  <Input
+                    id="fullname"
+                    name="fullname"
+                    placeholder="SANI"
+                    required
+                    value={formData.fullname}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
               <div className="grid gap-2">
-                <Label htmlFor="first-name">First name</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
-                  id="username"
-                  name="username"
-                  placeholder="SAGE"
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="m@example.com"
                   required
-                  value={formData.username}
+                />
+              </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
                   onChange={handleChange}
                 />
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="last-name">Last name</Label>
-                <Input
-                  id="fullname"
-                  name="fullname"
-                  placeholder="SANI"
-                  required
-                  value={formData.fullname}
-                  onChange={handleChange}
-                />
-              </div>
+              <Button onClick={handleSubmit} type="submit" className="w-full">
+                Create an account
+              </Button>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="m@example.com"
-                required
-              />
+            <div className="mt-4 text-center text-sm">
+              Already have an account?{" "}
+              <Link href="/Login" className="underline">
+                Sign in
+              </Link>
             </div>
-
-            <div className="grid gap-2">
-              <Label htmlFor="password">Password</Label>
-
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-            <Button onClick={handleSubmit} type="submit" className="w-full">
-              Create an account
-            </Button>
-          </div>
-          <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
-            <Link href="/Login" className="underline">
-              Sign in
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+        <div>img</div>
+      </div>
     </>
   );
 };

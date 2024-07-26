@@ -45,22 +45,20 @@ export function Caroussel() {
       <CarouselContent>
         {blogData.map((item, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <Link href={item.link}>
-                  <img
-                    src={item.src}
-                    /* width={300}
+            <div className="p-1 m-8">
+              <Link href={item.link}>
+                <img
+                  src={item.src}
+                  /* width={300}
                     height={50} */
-                    alt={`Blog Image ${index + 1}`}
-                    style={{
-                      width: "",
-                      height: "",
-                      objectFit: "fill",
-                    }}
-                  />
-                </Link>
-              </Card>
+                  alt={`Blog Image ${index + 1}`}
+                  style={{
+                    width: "",
+                    height: "",
+                    objectFit: "fill",
+                  }}
+                />
+              </Link>
             </div>
           </CarouselItem>
         ))}

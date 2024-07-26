@@ -56,10 +56,7 @@ const BoardPage = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="shadow-2xl">
-                    <div className="text-2xl font-bold">5000+</div>
-                    <p className="text-xs text-muted-foreground">
-                      +20.1% from last month
-                    </p>
+                    <div className="text-2xl font-bold">+</div>
                   </CardContent>
                 </Card>
                 <Card className="hover:bg-yellow-500 shadow-2xl">
@@ -82,7 +79,7 @@ const BoardPage = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="shadow-2xl">
-                    <div className="text-2xl font-bold">+1</div>
+                    <div className="text-2xl font-bold">+</div>
                     <p className="text-xs text-muted-foreground">
                       View your Invoice
                     </p>
@@ -91,28 +88,31 @@ const BoardPage = () => {
                 <Card className="hover:bg-yellow-500">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Learn More About your destination
+                      Learn More About what we offer
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="shadow-2xl">
                     <div className="text-2xl font-bold">+</div>
                     <p className="text-xs text-muted-foreground ">
-                      learn more about your destination
+                      learn more about Bilberk
                     </p>
                   </CardContent>
                 </Card>
               </div>
-              <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-7">
-                {/* <CardTitle>Profile</CardTitle> */}
-                <CardContent className="col-span-2  bg-yellow-500 shadow-2xl rounded-full">
-                  <ProfilePage />
-                </CardContent>
+              <div className="flex flex-row">
+                <div className=" w-full ">
+                  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    {/* <CardTitle>Profile</CardTitle> */}
+                    <CardContent className="col-span-2  bg-yellow-500 shadow-2xl rounded-lg">
+                      <ProfilePage />
+                    </CardContent>
 
-                <div className="col-span-2 bg-yellow-500 flex justify-center items-center shadow-2xl rounded-full">
-                  <TrackPage />
+                    <div className="col-span-2 bg-yellow-500 flex justify-center items-center shadow-2xl rounded-lg">
+                      <TrackPage />
+                    </div>
+                  </div>
                 </div>
-
-                <div className=" col-span-3 shadow-2xl">
+                <div className="w-full flex shadow-2xl">
                   <Caroussel />
                 </div>
               </div>

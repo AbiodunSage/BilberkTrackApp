@@ -12,11 +12,11 @@ const Navigation = () => {
     { title: "DashBoard", path: "/board" },
     { title: "LogIn", path: "/Login" },
     { title: "SignUp", path: "/Signup" },
-    { title: "Track My Application", path: "/Tracking/TrackLogin" },
+    { title: "Track", path: "/Tracking/TrackLogin" },
   ];
   return (
     <div>
-      <nav className="bg-white w-full border-b md:border-0">
+      <nav className="bg-white w-full border-b md:border-2 rounded-md shadow-2xl border-yellow-600">
         <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link href="/">
@@ -43,7 +43,10 @@ const Navigation = () => {
           >
             <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {menus.map((item, idx) => (
-                <li key={idx} className="text-gray-600 hover:text-yellow-600">
+                <li
+                  key={idx}
+                  className="text-gray-600 hover:text-white hover:bg-yellow-600 bg-yellow-500 m-6 px-8 uppercase rounded-md"
+                >
                   <Link href={item.path}>{item.title}</Link>
                 </li>
               ))}

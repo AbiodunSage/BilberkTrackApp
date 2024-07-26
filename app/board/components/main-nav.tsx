@@ -13,12 +13,6 @@ export function MainNav({
       {...props}
     >
       <Link
-        href="#"
-        className="text-sm font-medium transition-colors hover:text-primary"
-      >
-        Overview
-      </Link>
-      <Link
         href="/ApplicationForm"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >

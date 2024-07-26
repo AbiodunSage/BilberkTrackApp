@@ -37,25 +37,25 @@ const ProfilePage = () => {
   const profilePicture = profileData?.profilePicture ?? "/mickey.png";
   return (
     <>
-      <div className="flex flex-col  justify-center items-center border-r-black rounded-s-xl">
-        <div className="">
+      <div className="flex flex-col items-center border-r-black rounded-s-xl p-1 sm:p-2 md:p-3 lg:p-4">
+        <div className="mb-1 sm:mb-2 md:mb-3 lg:mb-4">
           <img
             style={{ width: "200px", height: "200px" }}
             className="border-style-solid border-s-yellow-500 border-2 rounded-full"
             src={profilePicture}
-            alt="something"
+            alt="Profile"
           />
         </div>
-        <div className="flex flex-col justify-center items-center">
-          <div className="  border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
-            <PageTitle title={`Name:${userProfile?.username}`} />
+        <div className="flex flex-col items-center w-full space-y-1 sm:space-y-2 md:space-y-3 lg:space-y-4">
+          <div className="border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl p-1 sm:p-2 md:p-3 lg:p-4 bg-white">
+            <PageTitle title={`Name: ${userProfile?.username}`} />
           </div>
-          <div className=" border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
-            <PageTitle title={`Email:${userProfile?.email}`} />
+          <div className="border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl p-1 sm:p-2 md:p-3 lg:p-4 bg-white">
+            <PageTitle title={`Email: ${userProfile?.email}`} />
           </div>
-          <div className="  border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl">
+          <div className="border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl p-1 sm:p-2 md:p-3 lg:p-4 bg-white">
             <PageTitle title="Bio" />
-            {profileData?.bio}
+            <p>{profileData?.bio}</p>
           </div>
           <DialogButton />
         </div>
