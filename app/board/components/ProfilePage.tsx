@@ -34,7 +34,8 @@ const ProfilePage = () => {
     fetchProfileData();
   }, [user]);
 
-  const profilePicture = profileData?.profilePicture ?? "/mickey.png";
+  const profilePicture =
+    profileData?.profilePicture ?? "/profileplaceholder.png";
   return (
     <>
       <div className="flex flex-col items-center border-r-black rounded-s-xl p-1 sm:p-2 md:p-3 lg:p-4">

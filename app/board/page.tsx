@@ -1,3 +1,4 @@
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 
@@ -8,11 +9,41 @@ import { SiteFooter } from "./components/SocialFooter";
 import { Caroussel } from "@/components/Caroussel";
 import ProfilePage from "./components/ProfilePage";
 import ParticlesComponent from "@/components/ParticleComponent";
-import NewsLetter from "./components/NewsLetter";
+
 import TrackPage from "../Tracking/page";
 import AuthRouter from "@/AuthRoute";
-import { AppProvider } from "@/AppContext";
-const BoardPage = () => {
+import logout from "@/hooks/useLogOut";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import useGetUserProfile from "@/hooks/useGetUserProfile";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, firestore } from "@/firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
+
+interface UserProfileData {
+  adminMessage: string;
+}
+
+const BoardPage: React.FC = () => {
+  const { isLoading, userProfile } = useGetUserProfile();
+  const [user] = useAuthState(auth);
+  const [profileData, setProfileData] = useState<UserProfileData | null>(null);
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      if (user) {
+        const userDocRef = doc(firestore, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+          setProfileData(userDoc.data() as UserProfileData);
+        } else {
+          console.log("No such document!");
+        }
+      }
+    };
+
+    fetchProfileData();
+  }, [user]);
   return (
     <>
       <AuthRouter>
@@ -53,8 +84,8 @@ const BoardPage = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-xs text-muted-foreground">
-                        Hello,pls complete your application
+                      <p className="text-lg text-yellow-700">
+                        {profileData?.adminMessage}
                       </p>
                     </CardContent>
                   </Card>

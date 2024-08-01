@@ -1,6 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, DocumentData } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  DocumentData,
+} from "firebase/firestore";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 
 import {
@@ -44,6 +50,9 @@ const Page: React.FC = () => {
     [key: string]: boolean;
   }>({});
   const [visaStatuses, setVisaStatuses] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+  const [adminMessages, setAdminMessages] = useState<{ [key: string]: string }>(
     {}
   );
 
@@ -202,6 +211,38 @@ const Page: React.FC = () => {
     }
   };
 
+  const handleAdminMessageChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    userId: string
+  ) => {
+    const message = event.target.value;
+    setAdminMessages((prevMessages) => ({
+      ...prevMessages,
+      [userId]: message,
+    }));
+  };
+
+  const handleAdminMessageSend = async (userId: string) => {
+    const message = adminMessages[userId];
+    if (!message) return;
+
+    try {
+      const userDocRef = doc(firestore, "users", userId);
+      await setDoc(
+        userDocRef,
+        { adminMessage: message },
+        { merge: true } // Merge with existing data
+      );
+      setAdminMessages((prevMessages) => ({
+        ...prevMessages,
+        [userId]: "", // Clear the message after sending
+      }));
+      console.log(`Message sent to user ${userId}: ${message}`);
+    } catch (error) {
+      console.error("Error sending admin message:", error);
+    }
+  };
+
   return (
     <div>
       <Table>
@@ -215,6 +256,7 @@ const Page: React.FC = () => {
             <TableHead>Uploaded Files</TableHead>
             <TableHead>Payment Status</TableHead>
             <TableHead>Visa Status</TableHead>
+            <TableHead>Admin Message</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -279,6 +321,23 @@ const Page: React.FC = () => {
                     {visaStatuses[user.uid]
                       ? "Cancel Visa Processing"
                       : "Trigger Visa Processing"}
+                  </Button>
+                </div>
+              </TableCell>
+              <TableCell>
+                <div>
+                  <textarea
+                    value={adminMessages[user.uid] || ""}
+                    onChange={(e) => handleAdminMessageChange(e, user.uid)}
+                    placeholder="Write a message"
+                    rows={3}
+                    style={{ width: "100%" }}
+                  />
+                  <Button
+                    onClick={() => handleAdminMessageSend(user.uid)}
+                    style={{ marginTop: "5px" }}
+                  >
+                    Send Message
                   </Button>
                 </div>
               </TableCell>

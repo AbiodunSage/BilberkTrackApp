@@ -43,7 +43,8 @@ export function UserNav() {
 
     fetchProfileData();
   }, [user]);
-  const profilePicture = profileData?.profilePicture ?? "/mickey.png";
+  const profilePicture =
+    profileData?.profilePicture ?? "/profileplaceholder.png";
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
