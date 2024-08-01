@@ -16,10 +16,11 @@ import {
 } from "firebase/firestore"; // Firestore imports
 import { ref, getMetadata, listAll } from "firebase/storage"; // Storage imports
 import { Skeleton } from "@/components/ui/skeleton";
+import { useAppContext } from "@/AppContext";
 
 interface UserData {
-  Payment: boolean;
-  VisaProcessing: boolean;
+  paymentStatus: boolean;
+  visaStatus: boolean;
 }
 
 const TrackPage: React.FC = () => {
@@ -82,6 +83,7 @@ const TrackPage: React.FC = () => {
 
         if (userDoc.exists()) {
           setUserData(userDoc.data() as UserData);
+          console.log(userData);
 
           // Fetch subcollection data
           await fetchSubcollectionData("users", user.uid, "applications");
@@ -117,6 +119,14 @@ const TrackPage: React.FC = () => {
   if (!user) {
     return <div>No user is signed in</div>;
   }
+  /*  const { payment } = useAppContext();
+  console.log("TrackingPage rendered with payment:", payment);
+
+  useEffect(() => {
+    if (payment) {
+      console.log("Effect triggered");
+    }
+  }, [payment]); */
 
   const ProgressBar = () => {
     let progressValue = 0;
@@ -126,10 +136,10 @@ const TrackPage: React.FC = () => {
     if (uploadsFolderUpdated) {
       progressValue += 25; // Additional 25% for file uploaded
     }
-    if (userData?.Payment) {
+    if (userData?.paymentStatus == true) {
       progressValue += 25; // Additional 25% for payment
     }
-    if (userData?.VisaProcessing) {
+    if (userData?.visaStatus) {
       progressValue += 25; // Additional 25% for visa processing
     }
     return progressValue;
@@ -153,13 +163,13 @@ const TrackPage: React.FC = () => {
       <div className="space-y-8">
         <div className="flex flex-wrap items-center border-4 rounded-2xl space-x-4 sm:space-x-6 px-4 sm:px-8">
           <div>Payment</div>
-          {userData?.Payment ? <Check /> : <Minus />}
+          {userData?.paymentStatus == true ? <Check /> : <Minus />}
         </div>
       </div>
       <div className="space-y-8">
         <div className="flex flex-wrap items-center border-4 rounded-2xl space-x-4 sm:space-x-6 px-4 sm:px-8">
           <div>Visa Processing</div>
-          {userData?.VisaProcessing ? <Check /> : <Minus />}
+          {userData?.visaStatus == true ? <Check /> : <Minus />}
         </div>
       </div>
       <Progress value={ProgressBar()} />

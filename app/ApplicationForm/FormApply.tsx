@@ -453,7 +453,7 @@ const FormApply: React.FC = () => {
                 type="date"
                 id="year of graduation"
                 value={YearOfGraduation}
-                onChange={(e) => setInstitution(e.target.value)}
+                onChange={(e) => setYearofGraduation(e.target.value)}
                 required
               />
             </div>
