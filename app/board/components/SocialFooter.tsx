@@ -13,7 +13,7 @@ export function SiteFooter() {
           ></a>
           . Follow us for more information{" "}
           <a
-            href="#"
+            href="https://www.instagram.com/bilberk_travel_agency?igsh=OHdhcG1ycmdiandp"
             target="_blank"
             rel="noreferrer"
             className="font-medium underline underline-offset-4"
@@ -31,7 +31,7 @@ export function SiteFooter() {
           </a>
           .
           <a
-            href="#"
+            href="https://www.facebook.com/Bilberktravelagency?ref=xav_pl_fb_external_link_android"
             target="_blank"
             rel="noreferrer"
             className="font-medium underline underline-offset-4"

@@ -18,14 +18,20 @@ import { useRouter } from "next/navigation";
 import useGetUserProfile from "@/hooks/useGetUserProfile";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, firestore } from "@/firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import Link from "next/link";
 
 interface UserProfileData {
   adminMessage: string;
 }
-
+interface ApplicationData {
+  applicationId: string;
+  userId: string;
+  [key: string]: any; // Adjust this type according to your application data structure
+}
 const BoardPage: React.FC = () => {
   const { isLoading, userProfile } = useGetUserProfile();
+  const [applications, setApplications] = useState<ApplicationData[]>([]);
   const [user] = useAuthState(auth);
   const [profileData, setProfileData] = useState<UserProfileData | null>(null);
   useEffect(() => {
@@ -44,6 +50,37 @@ const BoardPage: React.FC = () => {
 
     fetchProfileData();
   }, [user]);
+  useEffect(() => {
+    const fetchApplications = async () => {
+      try {
+        const usersSnapshot = await getDocs(collection(firestore, "users"));
+        const applicationsPromises = usersSnapshot.docs.map(async (userDoc) => {
+          const applicationsSnapshot = await getDocs(
+            collection(firestore, "users", userDoc.id, "applications")
+          );
+          return applicationsSnapshot.docs.map((doc) => ({
+            applicationId: doc.id,
+            userId: userDoc.id,
+            ...doc.data(),
+          }));
+        });
+
+        const applicationsResults = await Promise.all(applicationsPromises);
+        const allApplications: ApplicationData[] = applicationsResults.flat();
+        console.log(
+          "Fetched Applications:",
+          allApplications,
+          allApplications.length
+        ); // Debug log
+
+        setApplications(allApplications);
+      } catch (error) {
+        console.error("Error fetching applications:", error);
+      }
+    };
+
+    fetchApplications();
+  }, []);
   return (
     <>
       <AuthRouter>
@@ -67,14 +104,17 @@ const BoardPage: React.FC = () => {
             <Tabs defaultValue="overview" className="space-y-4">
               <TabsContent value="overview" className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                  <Card className="hover:bg-yellow-500">
+                  <Card className="hover:bg-yellow-500 shadow-2xl">
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                       <CardTitle className="text-sm font-medium ">
                         Number of Applications
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="shadow-2xl">
-                      <div className="text-2xl font-bold">+</div>
+                    <CardContent className="">
+                      <div className="text-2xl font-bold">
+                        +{applications.length}
+                      </div>
+                      <div></div>
                     </CardContent>
                   </Card>
                   <Card className="hover:bg-yellow-500 shadow-2xl">
@@ -89,33 +129,37 @@ const BoardPage: React.FC = () => {
                       </p>
                     </CardContent>
                   </Card>
-
-                  <Card className="hover:bg-yellow-500">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Invoice
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="shadow-2xl">
-                      <div className="text-2xl font-bold">+</div>
-                      <p className="text-xs text-muted-foreground">
-                        View your Invoice
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="hover:bg-yellow-500">
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                      <CardTitle className="text-sm font-medium">
-                        Learn More About what we offer
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="shadow-2xl">
-                      <div className="text-2xl font-bold">+</div>
-                      <p className="text-xs text-muted-foreground ">
-                        learn more about Bilberk
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <Link href="https://donate.stripe.com/eVa29zalDeKR9FK28h">
+                    <Card className="hover:bg-yellow-500">
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">
+                          Invoice
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="shadow-2xl">
+                        <div className="text-2xl font-bold"> Go to Payment</div>
+                        <p className="text-xs text-muted-foreground">
+                          {" "}
+                          create an invoice , and make payments
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                  <Link href="https://bilberktravelagency.com/about/">
+                    <Card className="hover:bg-yellow-500">
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium">
+                          Learn More About what we offer
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="shadow-2xl">
+                        <div className="text-2xl font-bold">Learn</div>
+                        <p className="text-xs text-muted-foreground ">
+                          more about Bilberk
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 </div>
                 <div className="flex flex-col lg:flex-row gap-4">
                   <div className="w-full">
