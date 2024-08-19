@@ -9,7 +9,7 @@ const Navigation = () => {
 
   const menus = [
     { title: "Home", path: "/" },
-    { title: "DashBoard", path: "/Board" },
+    { title: "DashBoard", path: "/board" },
     { title: "LogIn", path: "/Login" },
     { title: "SignUp", path: "/Signup" },
     { title: "Track", path: "/Tracking/TrackLogin" },
