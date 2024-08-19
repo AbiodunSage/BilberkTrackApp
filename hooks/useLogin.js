@@ -31,7 +31,7 @@ const useLogin = () => {
         localStorage.setItem("user-info", JSON.stringify(userData));
         loginUser(userData);
         showToast("variant", "Logged in successfully", "success");
-        router.push("/Board"); // Redirect to home page or dashboard
+        router.push("/board"); // Redirect to home page or dashboard
       }
       if (!userCred) {
         showToast(
