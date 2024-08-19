@@ -65,7 +65,7 @@ const Signuppage = () => {
                     <Input
                       id="username"
                       name="username"
-                      placeholder="SAGE"
+                      placeholder="First name"
                       required
                       value={formData.username}
                       onChange={handleChange}
@@ -76,7 +76,7 @@ const Signuppage = () => {
                     <Input
                       id="fullname"
                       name="fullname"
-                      placeholder="SANI"
+                      placeholder="Last Name"
                       required
                       value={formData.fullname}
                       onChange={handleChange}
