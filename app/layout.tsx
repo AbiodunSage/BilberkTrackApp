@@ -10,6 +10,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Bilberk application",
   description: "Designed by lucas sage",
+  icons: {
+    icon: ["/favicon.ico?v=4"],
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({

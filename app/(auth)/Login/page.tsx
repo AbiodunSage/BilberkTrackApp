@@ -19,9 +19,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import useShowToast from "@/hooks/useShowToast";
 
 const LoginPage = () => {
   const router = useRouter();
+  const showToast = useShowToast();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -39,6 +41,8 @@ const LoginPage = () => {
   const { loading, error, login } = useLogin();
   const handleSubmit = async () => {
     await login(formData);
+    router.push("/board");
+    showToast("variant", "Logged in successfully", "success");
   };
 
   return (

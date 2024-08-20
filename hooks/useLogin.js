@@ -30,8 +30,8 @@ const useLogin = () => {
         const userData = docSnap.data();
         localStorage.setItem("user-info", JSON.stringify(userData));
         loginUser(userData);
-        showToast("variant", "Logged in successfully", "success");
-        router.push("/board"); // Redirect to home page or dashboard
+
+        // Redirect to home page or dashboard
       }
       if (!userCred) {
         showToast(
