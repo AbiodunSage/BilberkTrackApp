@@ -172,6 +172,7 @@ const TrackPage: React.FC = () => {
           {userData?.visaStatus == true ? <Check /> : <Minus />}
         </div>
       </div>
+      <PageTitle title="Progress Bar" />
       <Progress value={ProgressBar()} />
     </div>
   );

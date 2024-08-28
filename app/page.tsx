@@ -24,7 +24,7 @@ export default function Home() {
               <Link href="https://bilberktravelagency.com/">Go back Home</Link>
             </Button>
             <Button asChild className="bg-yellow-600 text-white ">
-              <Link href="/Signup"> Click to continue</Link>
+              <Link href="/Login"> Click to continue</Link>
             </Button>
           </div>
         </div>

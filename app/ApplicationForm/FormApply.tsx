@@ -226,7 +226,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="Coutry of Residence" className="font-bold">
-                Country of Residence Name:
+                Country of Residence:
               </label>
               <Input
                 className="shadow-xl required:border-red-500"
@@ -285,7 +285,7 @@ const FormApply: React.FC = () => {
                 onChange={(e) => setMaritalStatus(e.target.value)}
                 required
               >
-                <option value="">Select a qualification</option>
+                <option value="">Select a Qualification</option>
                 <option value="Married">Married</option>
                 <option value="Single">Single</option>
                 <option value="Divorced">Divorced</option>
@@ -340,7 +340,7 @@ const FormApply: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
               <label htmlFor="passportNumber" className="font-bold">
-                passport Number:
+                Passport Number:
               </label>
               <Input
                 className="shadow-xl required:border-red-500"
@@ -434,7 +434,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="Institution" className="font-bold">
-                School Grdauated from:
+                School Graduated from:
               </label>
               <Input
                 className="shadow-xl required:border-red-500"
@@ -447,7 +447,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="year of grdauation" className="font-bold">
-                year of grdauation:
+                Year of Graduation:
               </label>
               <Input
                 type="date"
@@ -459,7 +459,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="DiplomaObtained" className="font-bold">
-                DiplomaObtained:
+                Diploma Obtained:
               </label>
               <select
                 id="DiplomaObtained"
@@ -467,7 +467,7 @@ const FormApply: React.FC = () => {
                 onChange={(e) => setDiplomaObtained(e.target.value)}
                 required
               >
-                <option value="">Select a qualification</option>
+                <option value="">Select a Qualification</option>
                 <option value="SSCE">SSCE</option>
                 <option value="Bachelor's Degree">Bachelor's Degree</option>
                 <option value="Master's Degree">Master's Degree</option>
@@ -496,7 +496,7 @@ const FormApply: React.FC = () => {
                 onChange={(e) => setIamapplyingfor(e.target.value)}
                 required
               >
-                <option value="">Select a qualification</option>
+                <option value="">Select a Qualification</option>
                 <option value="PhD">PhD</option>
                 <option value="Bachelor's Degree">Bachelor's Degree</option>
                 <option value="Master's Degree">Master's Degree</option>
@@ -504,7 +504,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="atwhat university" className="font-bold">
-                At what University:
+                At what University?:
               </label>
               <Input
                 className="shadow-xl required:border-red-500"
@@ -517,7 +517,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="in which country" className="font-bold">
-                In which Country:
+                In which Country?:
               </label>
               <Input
                 className="shadow-xl required:border-red-500"
@@ -541,7 +541,7 @@ const FormApply: React.FC = () => {
                 htmlFor="which country are you interested in"
                 className="font-bold"
               >
-                Which Country are you interested in:
+                Which Country are you interested in?:
               </label>
               <Input
                 className="shadow-xl border-stone-950"
@@ -553,7 +553,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="what course" className="font-bold">
-                Which Course are you interested in:
+                Which Course are you interested in?:
               </label>
               <Input
                 className="shadow-xl border-stone-950"
@@ -565,7 +565,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="tuition Budget" className="font-bold">
-                Whats your tuition Budget:
+                Whats your tuition Budget?:
               </label>
               <Input
                 className="shadow-xl border-stone-950"
@@ -582,7 +582,7 @@ const FormApply: React.FC = () => {
           <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
               <label htmlFor="have you travelled before" className="font-bold">
-                Have you travelled before:
+                Have you travelled before?:
               </label>
               <Input
                 className="shadow-xl border-stone-950"
@@ -594,7 +594,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="consolate" className="font-bold">
-                Have you gotten refusal before a consolate:
+                Have you gotten refusal before a consolate?:
               </label>
               <Input
                 className="shadow-xl border-stone-950"
@@ -618,7 +618,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="sponsor" className="font-bold">
-                who is your sponsor:
+                Who is your sponsor:
               </label>
               <Input
                 className="shadow-xl border-stone-950"

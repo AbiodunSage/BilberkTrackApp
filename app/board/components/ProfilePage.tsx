@@ -52,7 +52,10 @@ const ProfilePage = () => {
             <PageTitle title={`Name: ${userProfile?.username}`} />
           </div>
           <div className="border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl p-1 sm:p-2 md:p-3 lg:p-4 bg-white">
-            <PageTitle title={`Email: ${userProfile?.email}`} />
+            <PageTitle title={`Email:`} />
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl overflow-hidden text-ellipsis whitespace-nowrap text-black">
+              {userProfile?.email}
+            </p>
           </div>
           <div className="border-style-solid border-x-black border-2 rounded-lg w-full shadow-xl p-1 sm:p-2 md:p-3 lg:p-4 bg-white">
             <PageTitle title="Bio" />
