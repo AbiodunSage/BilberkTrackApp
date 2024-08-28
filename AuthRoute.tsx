@@ -7,7 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { app } from "./firebase/firebase";
 import useShowToast from "./hooks/useShowToast";
 
-const HOME_ROUTE = "/Signup";
+const HOME_ROUTE = "/";
 const DASH_BOARD = "/Board";
 
 const AuthRouter = (props: any) => {
@@ -19,7 +19,7 @@ const AuthRouter = (props: any) => {
 
   useEffect(() => {
     if (!loading) {
-      if (!user) {
+      if (!user && DASH_BOARD) {
         showToast("destructive", "Log In or Sign Up", "error");
         router.replace(HOME_ROUTE);
       }

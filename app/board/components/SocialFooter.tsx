@@ -22,7 +22,7 @@ export function SiteFooter() {
           </a>
           .{" "}
           <a
-            href="#"
+            href="https://www.youtube.com/@BilberkTravelAgency"
             target="_blank"
             rel="noreferrer"
             className="font-medium underline underline-offset-4"

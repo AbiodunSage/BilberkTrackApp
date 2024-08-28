@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const Signuppage = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +37,7 @@ const Signuppage = () => {
   const handleSubmit = async () => {
     signup(formData);
   };
-
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <>
       <div className="grid grid-flow-col-2 align-middle">
@@ -97,14 +98,19 @@ const Signuppage = () => {
                 </div>
 
                 <div className="grid gap-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
+                  <div>
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                      id="password"
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    <button onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+                    </button>
+                  </div>
                 </div>
                 <Button
                   onClick={handleSubmit}
@@ -117,7 +123,7 @@ const Signuppage = () => {
               </div>
               <div className="mt-4 text-center text-sm">
                 Already have an account?{" "}
-                <Link href="/Login" className="underline">
+                <Link href="/" className="underline">
                   Sign in
                 </Link>
               </div>

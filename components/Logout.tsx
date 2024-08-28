@@ -8,7 +8,7 @@ const LogoutButton: React.FC = () => {
   const router = useRouter();
   const handleLogout = async () => {
     await logout();
-    router.push("/Login");
+    router.push("/");
   };
 
   return <button onClick={handleLogout}>Logout</button>;

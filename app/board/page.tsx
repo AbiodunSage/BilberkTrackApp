@@ -12,9 +12,9 @@ import ParticlesComponent from "@/components/ParticleComponent";
 
 import TrackPage from "../Tracking/page";
 import AuthRouter from "@/AuthRoute";
-import logout from "@/hooks/useLogOut";
+
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+
 import useGetUserProfile from "@/hooks/useGetUserProfile";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, firestore } from "@/firebase/firebase";
@@ -161,21 +161,17 @@ const BoardPage: React.FC = () => {
                     </Card>
                   </Link>
                 </div>
-                <div className="flex flex-col lg:flex-row gap-4">
-                  <div className="w-full">
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                      {/* <CardTitle>Profile</CardTitle> */}
-                      <CardContent className="col-span-2 bg-yellow-500 shadow-2xl rounded-lg">
-                        <ProfilePage />
-                      </CardContent>
-
-                      <div className="col-span-2 bg-yellow-500 flex justify-center items-center shadow-2xl rounded-lg">
-                        <TrackPage />
-                      </div>
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-col lg:flex-row gap-4">
+                    <div className="flex-[1] bg-yellow-500 shadow-2xl rounded-lg">
+                      <ProfilePage />
                     </div>
-                  </div>
-                  <div className="w-full flex shadow-2xl">
-                    <Caroussel />
+                    <div className="flex-[1.5] flex justify-center items-center shadow-2xl rounded-lg">
+                      <Caroussel />
+                    </div>
+                    <div className="flex-[1] bg-yellow-500 flex justify-center items-center shadow-2xl rounded-lg">
+                      <TrackPage />
+                    </div>
                   </div>
                 </div>
               </TabsContent>

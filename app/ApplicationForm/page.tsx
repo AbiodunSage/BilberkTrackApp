@@ -2,7 +2,6 @@ import PageTitle from "@/components/PageTitle";
 import React from "react";
 import Navigation from "../(auth)/Nav/page";
 import FormApply from "./FormApply";
-import UploadFiles from "@/app/UploadFiles/page";
 
 const ApplicationForm = () => {
   return (
@@ -28,4 +27,3 @@ const ApplicationForm = () => {
 };
 
 export default ApplicationForm;
-// push files to another firestore collection

@@ -2,18 +2,20 @@
 import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
+import { usePathname } from "next/navigation"; // Import usePathname
 
 const Navigation = () => {
   const [state, setState] = React.useState(false);
+  const pathname = usePathname(); // Get the current pathname
 
   const menus = [
     { title: "Home", path: "/" },
     { title: "DashBoard", path: "/board" },
-    { title: "LogIn", path: "/Login" },
     { title: "SignUp", path: "/Signup" },
     { title: "Track", path: "/Tracking/TrackLogin" },
   ];
+
   return (
     <div>
       <nav className="bg-white w-full border-b md:border-2 rounded-md mt-8 mb-8 shadow-md border-yellow-600">
@@ -42,14 +44,17 @@ const Navigation = () => {
             }`}
           >
             <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              {menus.map((item, idx) => (
-                <li
-                  key={idx}
-                  className="text-gray-600 hover:text-white hover:bg-yellow-600 bg-yellow-500 m-6 px-8 uppercase rounded-md"
-                >
-                  <Link href={item.path}>{item.title}</Link>
-                </li>
-              ))}
+              {menus.map(
+                (item, idx) =>
+                  pathname !== item.path && ( // Only render the link if the current route is not equal to the link's path
+                    <li
+                      key={idx}
+                      className="text-gray-600 hover:text-white hover:bg-yellow-600 bg-yellow-500 m-6 px-8 uppercase rounded-md"
+                    >
+                      <Link href={item.path}>{item.title}</Link>
+                    </li>
+                  )
+              )}
             </ul>
           </div>
         </div>
