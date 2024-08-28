@@ -106,7 +106,7 @@ const LoginPage = () => {
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
-              <Link href="/signup" className="underline">
+              <Link href="/Signup" className="underline">
                 Sign up
               </Link>
             </div>
