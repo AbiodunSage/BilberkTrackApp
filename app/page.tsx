@@ -52,21 +52,21 @@ export default function Home() {
 
   return (
     <div
-      className="bg-scroll"
+      className="bg-scroll min-h-screen bg-cover bg-center"
       style={{
         backgroundImage: `url('/landingpagebg.jpg')`,
-        backgroundSize: "cover",
       }}
     >
-      <main className=" min-h-screen  p-8">
-        <div className="">
-          <div className="flex items-center gap-4">
-            <Image
-              src="/logowithoutBackground.png"
-              alt="logo"
-              width={200}
-              height={200}
-            />
+      <main className="flex flex-col justify-between p-6 md:p-8">
+        <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
+          <Image
+            src="/logowithoutBackground.png"
+            alt="logo"
+            width={150}
+            height={150}
+            className="w-24 h-auto md:w-40"
+          />
+          <div className="flex flex-col md:flex-row gap-4">
             <Button asChild>
               <Link href="https://bilberktravelagency.com/">
                 Go back to site
@@ -77,17 +77,17 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className="flex gap-2 items-center justify-center m-8">
-          <div className="flex items-center justify-center py-12">
-            <div className="grid w-[350px] gap-2">
-              <div className="grid gap-2 text-center">
-                <h1 className="text-3xl font-bold">Login</h1>
-                <p className="text-balance text-muted-foreground">
+        <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
+          <div className="flex items-center justify-center py-8 md:py-12">
+            <div className="w-full max-w-xs md:max-w-sm lg:max-w-md">
+              <div className="text-center mb-6">
+                <h1 className="text-2xl md:text-3xl font-bold">Login</h1>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Enter your email below to login to your account
                 </p>
               </div>
-              <div className="grid gap-4">
-                <div className="grid gap-2">
+              <div className="space-y-4">
+                <div>
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
@@ -99,27 +99,28 @@ export default function Home() {
                     required
                   />
                 </div>
-                <div className="grid gap-2">
-                  <div className="flex items-center">
+                <div>
+                  <div className="flex justify-between items-center">
                     <Label htmlFor="password">Password</Label>
-                  </div>
-                  <div>
-                    <Input
-                      id="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      type={showPassword ? "text" : "password"}
-                      required
-                    />
-                    <button onClick={() => setShowPassword(!showPassword)}>
+                    <button
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="text-gray-600 hover:text-gray-800"
+                    >
                       {showPassword ? <EyeOffIcon /> : <EyeIcon />}
                     </button>
                   </div>
+                  <Input
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    type={showPassword ? "text" : "password"}
+                    required
+                  />
                 </div>
-                <div>
+                <div className="flex justify-end">
                   <AlertDialog>
-                    <AlertDialogTrigger className="bg-yellow-600 w-1/2 border-2 rounded-md px-4 grid justify-items-end items-end">
+                    <AlertDialogTrigger className="text-sm text-yellow-600 hover:underline">
                       Forgot Password
                     </AlertDialogTrigger>
                     <AlertDialogContent>
@@ -147,9 +148,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <ScrollArea className="h-[500px] w-[400px] rounded-md border p-4">
-              <img src="/registrationImage.png" alt="logo" />
+          <div className="hidden md:flex items-center justify-center">
+            <ScrollArea className="h-[400px] w-[300px] lg:h-[500px] lg:w-[400px] rounded-md border p-4">
+              <img
+                src="/registrationImage.png"
+                alt="logo"
+                className="h-full w-full object-cover"
+              />
             </ScrollArea>
           </div>
         </div>
