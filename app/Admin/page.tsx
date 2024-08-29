@@ -241,7 +241,6 @@ const Page: React.FC = () => {
         ...prevMessages,
         [userId]: "", // Clear the message after sending
       }));
-      console.log(`Message sent to user ${userId}: ${message}`);
     } catch (error) {
       console.error("Error sending admin message:", error);
     }

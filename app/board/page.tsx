@@ -20,6 +20,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, firestore } from "@/firebase/firebase";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import Link from "next/link";
+import useLogout from "@/hooks/useLogOut";
 
 interface UserProfileData {
   adminMessage: string;
@@ -81,9 +82,10 @@ const BoardPage: React.FC = () => {
 
     fetchApplications();
   }, []);
+  const { logout, isLoggingOut } = useLogout();
   return (
     <>
-      <AuthRouter>
+      <AuthRouter isLoggingOut={isLoggingOut}>
         <div style={{ position: "relative" }}>
           <ParticlesComponent />
         </div>
