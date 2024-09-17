@@ -14,9 +14,8 @@ import {
   query,
   DocumentData,
 } from "firebase/firestore"; // Firestore imports
-import { ref, getMetadata, listAll } from "firebase/storage"; // Storage imports
+import { ref, listAll } from "firebase/storage"; // Storage imports
 import { Skeleton } from "@/components/ui/skeleton";
-import { useAppContext } from "@/AppContext";
 
 interface UserData {
   paymentStatus: boolean;
@@ -64,7 +63,6 @@ const TrackPage: React.FC = () => {
       const folderRef = ref(storage, `uploads/${userId}`);
       const result = await listAll(folderRef);
       if (result.items.length > 0) {
-        console.log("Uploads folder has been updated with files.");
         setUploadsFolderUpdated(true);
       } else {
         console.log("Uploads folder is empty.");
@@ -83,7 +81,6 @@ const TrackPage: React.FC = () => {
 
         if (userDoc.exists()) {
           setUserData(userDoc.data() as UserData);
-          console.log(userData);
 
           // Fetch subcollection data
           await fetchSubcollectionData("users", user.uid, "applications");
@@ -119,14 +116,6 @@ const TrackPage: React.FC = () => {
   if (!user) {
     return <div>No user is signed in</div>;
   }
-  /*  const { payment } = useAppContext();
-  console.log("TrackingPage rendered with payment:", payment);
-
-  useEffect(() => {
-    if (payment) {
-      console.log("Effect triggered");
-    }
-  }, [payment]); */
 
   const ProgressBar = () => {
     let progressValue = 0;

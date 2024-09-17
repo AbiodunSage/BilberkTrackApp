@@ -12,9 +12,7 @@ const UploadFiles = () => {
   const goBack = () => {
     if (window.history.length > 1) {
       router.back();
-    } /*  else {
-      router.push("/board"); // Fallback to the home page or any specific page
-    } */
+    }
   };
   return (
     <>

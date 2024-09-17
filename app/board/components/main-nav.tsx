@@ -11,8 +11,6 @@ export function MainNav({
   const router = useRouter();
   const ChangePage = () => {
     router.push("/ApplicationForm");
-    /*const url = "/ApplicationForm";
-     window.open(url, "_blank", "noopener,noreferrer"); */
   };
   const SendHome = () => {
     const url = "https://bilberktravelagency.com/";

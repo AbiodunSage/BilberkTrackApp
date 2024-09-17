@@ -101,11 +101,7 @@ const Page: React.FC = () => {
 
         const applicationsResults = await Promise.all(applicationsPromises);
         const allApplications: ApplicationData[] = applicationsResults.flat();
-        console.log(
-          "Fetched Applications:",
-          allApplications,
-          allApplications.length
-        ); // Debug log
+        // Debug log
         setApplications(allApplications);
       } catch (error) {
         console.error("Error fetching applications:", error);

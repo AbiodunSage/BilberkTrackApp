@@ -72,16 +72,10 @@ const BoardPage: React.FC = () => {
 
         const applicationsResults = await Promise.all(applicationsPromises);
         const allApplications: ApplicationData[] = applicationsResults.flat();
-        console.log(
-          "Fetched Applications:",
-          allApplications,
-          allApplications.length
-        ); // Debug log
+        // Debug log
         const userApplications = allApplications.filter(
           (app) => app.userId === user?.uid
         );
-
-        console.log("User Applications:", userApplications.length);
 
         setApplications(allApplications);
         setUserApplications(userApplications);

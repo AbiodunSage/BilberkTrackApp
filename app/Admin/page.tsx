@@ -39,11 +39,9 @@ const AdminLogin: React.FC = () => {
         const userData = userDoc.data();
         return userData.isAdmin || false;
       } else {
-        console.error("User does not exist in Firestore.");
         return false;
       }
     } catch (error) {
-      console.error("Error checking admin status:", error);
       return false;
     }
   };
@@ -78,7 +76,6 @@ const AdminLogin: React.FC = () => {
       }
     } catch (error) {
       showToast("destructive", "Login failed", "error");
-      console.error("Error during login:", error);
     } finally {
       setLoading(false);
     }

@@ -60,7 +60,7 @@ const FormUpload = () => {
         (acc, cur) => ({ ...acc, ...cur }),
         {}
       );
-      console.log("All files uploaded successfully:", downloadURLs);
+
       router.push("/Board");
 
       return downloadURLs;
@@ -74,7 +74,6 @@ const FormUpload = () => {
     event.preventDefault();
 
     if (!user) {
-      console.error("User not authenticated");
       return;
     }
 

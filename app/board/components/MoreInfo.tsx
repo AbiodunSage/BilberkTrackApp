@@ -71,9 +71,6 @@ const MoreInfo = () => {
           </Row>
         </Col>
       </section>
-      {/*     </div>
-        </div>
-      </div> */}
     </>
   );
 };

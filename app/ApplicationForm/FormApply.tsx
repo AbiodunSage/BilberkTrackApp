@@ -127,7 +127,6 @@ const FormApply: React.FC = () => {
 
         uid: user.uid,
       });
-      console.log("Application submitted");
     } catch (error) {
       console.error("Error writing document: ", error);
     }
