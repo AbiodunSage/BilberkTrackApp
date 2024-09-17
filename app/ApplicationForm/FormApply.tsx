@@ -130,7 +130,7 @@ const FormApply: React.FC = () => {
     } catch (error) {
       console.error("Error writing document: ", error);
     }
-    router.push("/Board");
+    router.push("/board");
   };
 
   return (

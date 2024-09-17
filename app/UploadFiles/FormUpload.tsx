@@ -61,7 +61,7 @@ const FormUpload = () => {
         {}
       );
 
-      router.push("/Board");
+      router.push("/board");
 
       return downloadURLs;
     } catch (error) {

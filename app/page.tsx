@@ -52,7 +52,7 @@ export default function Home() {
 
     if (success) {
       showToast("variant", "Logged in successfully", "success");
-      router.push("/Board");
+      router.push("/board");
     }
   };
 
