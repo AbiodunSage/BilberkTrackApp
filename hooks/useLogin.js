@@ -13,34 +13,44 @@ const useLogin = () => {
   const router = useRouter();
 
   const login = async (formData) => {
-    if (!formData.email || !formData.password) {
-      return showToast("destructive", "Please fill all the fields", "error");
-    }
-
     try {
       const userCred = await signInWithEmailAndPassword(
         formData.email,
         formData.password
       );
 
-      if (userCred) {
-        const docRef = doc(firestore, "users", userCred.user.uid);
-        const docSnap = await getDoc(docRef);
-
-        const userData = docSnap.data();
-        localStorage.setItem("user-info", JSON.stringify(userData));
-        loginUser(userData);
-
-        // Redirect to home page or dashboard
-      }
+      // If userCred does not exist, display an error and return early
       if (!userCred) {
         showToast(
           "destructive",
           "User does not exist, or wrong username and password",
           "error"
         );
-        return; // Prevent login if user does not exist in Firestore
+        return false; // Stop further execution
       }
+
+      // Fetch user data from Firestore
+      const docRef = doc(firestore, "users", userCred.user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        showToast(
+          "destructive",
+          "User document does not exist in Firestore",
+          "error"
+        );
+        return false; // Stop further execution
+      }
+
+      const userData = docSnap.data();
+      localStorage.setItem("user-info", JSON.stringify(userData));
+
+      // Log in the user in the global state/store
+      loginUser(userData);
+      return true;
+
+      // Redirect to home page or dashboard
+      // Or whichever page you want to redirect to
     } catch (error) {
       console.error(error);
       showToast("destructive", "Login failed", "error");

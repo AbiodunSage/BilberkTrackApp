@@ -21,6 +21,7 @@ import { auth, firestore } from "@/firebase/firebase";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import Link from "next/link";
 import useLogout from "@/hooks/useLogOut";
+import MoreInfo from "./components/MoreInfo";
 
 interface UserProfileData {
   adminMessage: string;
@@ -33,6 +34,9 @@ interface ApplicationData {
 const BoardPage: React.FC = () => {
   const { isLoading, userProfile } = useGetUserProfile();
   const [applications, setApplications] = useState<ApplicationData[]>([]);
+  const [userapplications, setUserApplications] = useState<ApplicationData[]>(
+    []
+  );
   const [user] = useAuthState(auth);
   const [profileData, setProfileData] = useState<UserProfileData | null>(null);
   useEffect(() => {
@@ -73,15 +77,21 @@ const BoardPage: React.FC = () => {
           allApplications,
           allApplications.length
         ); // Debug log
+        const userApplications = allApplications.filter(
+          (app) => app.userId === user?.uid
+        );
+
+        console.log("User Applications:", userApplications.length);
 
         setApplications(allApplications);
+        setUserApplications(userApplications);
       } catch (error) {
         console.error("Error fetching applications:", error);
       }
     };
 
     fetchApplications();
-  }, []);
+  }, [user]);
   const { logout, isLoggingOut } = useLogout();
   return (
     <>
@@ -131,23 +141,25 @@ const BoardPage: React.FC = () => {
                       </p>
                     </CardContent>
                   </Card>
-                  <Link href="https://donate.stripe.com/eVa29zalDeKR9FK28h">
-                    <Card className="hover:bg-yellow-500">
-                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">
-                          Invoice
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="shadow-2xl">
-                        <div className="text-2xl font-bold"> Go to Payment</div>
-                        <p className="text-xs text-muted-foreground">
-                          {" "}
-                          create an invoice , and make payments
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                  <Link href="http://bilberktravelagency.com/admission-processing/">
+
+                  <Card className="hover:bg-yellow-500">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium no-underline">
+                        User Applications
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="">
+                      <div className="text-2xl font-bold">
+                        +{userapplications.length}
+                      </div>
+                      <div></div>
+                    </CardContent>
+                  </Card>
+
+                  <Link
+                    href="http://bilberktravelagency.com/admission-processing/"
+                    className="no-underline"
+                  >
                     <Card className="hover:bg-yellow-500">
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">
@@ -168,9 +180,7 @@ const BoardPage: React.FC = () => {
                     <div className="flex-[1] bg-yellow-500 shadow-2xl rounded-lg">
                       <ProfilePage />
                     </div>
-                    <div className="flex-[1.5] flex justify-center items-center shadow-2xl rounded-lg">
-                      <Caroussel />
-                    </div>
+
                     <div className="flex-[1] bg-yellow-500 flex justify-center items-center shadow-2xl rounded-lg">
                       <TrackPage />
                     </div>
@@ -179,7 +189,18 @@ const BoardPage: React.FC = () => {
               </TabsContent>
             </Tabs>
           </div>
-          {/* <NewsLetter /> */}
+          <div className="flex justify-center w-fit bg-black text-white p-2 mx-auto rounded-sm shadow-md place content-center">
+            <p
+              style={{ fontFamily: "cursive", fontSize: 20 }}
+              className="text-sm md:text-base m-2"
+            >
+              More About what we Offer!!
+            </p>
+          </div>
+          <div className="">
+            <MoreInfo />
+          </div>
+
           <SiteFooter />
         </div>
       </AuthRouter>

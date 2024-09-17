@@ -1,0 +1,38 @@
+.body {
+  margin: auto;
+  padding: auto;
+}
+.login-page {
+  display: grid;
+  border-radius: 2%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: burlywood;
+  justify-content: center;
+  align-items: center;
+  place-items: center;
+  margin: auto;
+  margin-top: 20px;
+  object-fit: contain;
+  width: 400px;
+  height: fit-content;
+  padding: 10px;
+}
+.Button {
+  display: grid;
+  background-color: bisque;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 10px;
+}
+.Button:hover {
+  background-color: rgb(230, 164, 21);
+}
+img {
+  width: 200px;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: 20px;
+}

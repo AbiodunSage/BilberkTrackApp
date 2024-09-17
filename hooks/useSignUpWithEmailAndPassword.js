@@ -58,7 +58,7 @@ const useSignUpWithEmailAndPassword = () => {
         showToast("destructive", "something went wrong", "Error");
         return;
       }
-      router.push("/Login");
+      router.push("/");
       if (newUser) {
         const userDoc = {
           uid: newUser.user.uid,
@@ -71,7 +71,7 @@ const useSignUpWithEmailAndPassword = () => {
         await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
         localStorage.setItem("user-info", JSON.stringify(userDoc));
         loginUser(userDoc);
-        router.push("/Login");
+        router.push("/");
       }
     } catch (e) {
       showToast("destructive", "something went wrongbull", "Error");

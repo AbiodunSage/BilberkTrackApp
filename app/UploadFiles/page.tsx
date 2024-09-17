@@ -1,25 +1,42 @@
+"use client";
 import PageTitle from "@/components/PageTitle";
 import React from "react";
 
 import FormUpload from "./FormUpload";
 import Navigation from "@/app/(auth)/Nav/page";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const UploadFiles = () => {
+  const router = useRouter();
+  const goBack = () => {
+    if (window.history.length > 1) {
+      router.back();
+    } /*  else {
+      router.push("/board"); // Fallback to the home page or any specific page
+    } */
+  };
   return (
     <>
       <main className="container w-3/4 mx-auto">
-        <Navigation />
-        <PageTitle title="Application Form" />
-        <div className="bg-red-400 w-full h-20 text-white text-center font-extrabold mx-auto">
-          <h1 className="mx-auto">Online Registration</h1>
+        {/* <Navigation /> */}
+        <nav className="m-8">
+          <Button className="bg-yellow-600" onClick={goBack}>
+            BACK
+          </Button>
+        </nav>
+
+        <PageTitle
+          className=" flex justify-center bg-yellow-500  w-full  rounded-sm p-2 shadow-md"
+          title="UPLOAD FILES"
+        />
+
+        <div className="m-8 text-3xl">
+          Hi,there! Carefully Upload your documents. This will help us
+          understand your educational status and how to help you further.
         </div>
-        <h1>
-          Hi,there! Kindly fill up the form carefully and upload your documents.
-          This form will help us understand your educational status and how to
-          help you further.
-        </h1>
         <FormUpload />
-        <div className="bg-red-400 w-full h-20 text-white text-center font-extrabold mx-auto">
+        <div className="bg-yellow-600 m-8 w-full h-20 text-white text-center font-extrabold mx-auto">
           <h1 className="mx-auto">Thank you for Your Time!!!</h1>
         </div>
       </main>

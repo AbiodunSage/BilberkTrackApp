@@ -61,7 +61,7 @@ const FormUpload = () => {
         {}
       );
       console.log("All files uploaded successfully:", downloadURLs);
-      router.push("https://donate.stripe.com/eVa29zalDeKR9FK28h");
+      router.push("/Board");
 
       return downloadURLs;
     } catch (error) {
@@ -86,65 +86,75 @@ const FormUpload = () => {
   };
 
   return (
-    <div className="bg-gray-100 space-y-4">
-      <h1>Upload Documents</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="passport">Upload Your Passport</Label>
-          <Input
-            id="passport"
-            type="file"
-            name="passportUpload"
-            onChange={handleFileChange}
-          />
-        </div>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="transcript">Upload your Transcript</Label>
-          <Input
-            id="transcript"
-            type="file"
-            name="transcriptUpload"
-            onChange={handleFileChange}
-          />
-        </div>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="diploma">Upload your Diploma</Label>
-          <Input
-            id="diploma"
-            type="file"
-            name="diplomaUpload"
-            onChange={handleFileChange}
-          />
-        </div>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="cv">Upload your CV</Label>
-          <Input
-            id="cv"
-            type="file"
-            name="cvUpload"
-            onChange={handleFileChange}
-          />
-        </div>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="letter">Upload your Reference Letter</Label>
-          <Input
-            id="letter"
-            type="file"
-            name="letterUpload"
-            onChange={handleFileChange}
-          />
-        </div>
-        <div className="grid w-full max-w-sm items-center gap-1.5">
-          <Label htmlFor="photo">Upload your Photo</Label>
-          <Input
-            id="photo"
-            type="file"
-            name="photoUpload"
-            onChange={handleFileChange}
-          />
-        </div>
-        <Button type="submit">Submit</Button>
-      </form>
+    <div className="bg-gray-100 space-y-4 ">
+      <div className="m-8 gap-2">
+        <h1>Upload Documents</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="grid w-full max-w-sm items-center gap-2">
+            <Label htmlFor="passport">Upload Your Passport</Label>
+            <Input
+              className="gap-2"
+              id="passport"
+              type="file"
+              name="passportUpload"
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-2">
+            <Label htmlFor="transcript">Upload your Transcript</Label>
+            <Input
+              className="gap-2"
+              id="transcript"
+              type="file"
+              name="transcriptUpload"
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="diploma">Upload your Diploma</Label>
+            <Input
+              className="gap-2"
+              id="diploma"
+              type="file"
+              name="diplomaUpload"
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="cv">Upload your CV</Label>
+            <Input
+              className="gap-2"
+              id="cv"
+              type="file"
+              name="cvUpload"
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="letter">Upload your Reference Letter</Label>
+            <Input
+              className="gap-2"
+              id="letter"
+              type="file"
+              name="letterUpload"
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="grid w-full max-w-sm items-center gap-1.5">
+            <Label htmlFor="photo">Upload your Photo</Label>
+            <Input
+              className="gap-2"
+              id="photo"
+              type="file"
+              name="photoUpload"
+              onChange={handleFileChange}
+            />
+          </div>
+          <Button className="m-4 bg-yellow-600" type="submit">
+            Submit
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };

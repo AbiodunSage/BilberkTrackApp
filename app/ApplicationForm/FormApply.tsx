@@ -75,68 +75,81 @@ const FormApply: React.FC = () => {
       const newApplicationDocRef = doc(applicationsCollectionRef);
 
       await setDoc(newApplicationDocRef, {
-        name,
-        lastname,
-        middlename,
-        nameofFather,
-        nameofMother,
-        gender,
-        nationality,
-        countryOfresidence,
-        dob,
-        placeOfBirth,
-        countryofBirth,
-        maritalStatus,
-        address,
-        email,
-        contact,
-        passportNumber,
-        issueDate,
-        issuedBy,
-        expiryDate,
-        nin,
-        PreviousLevelofStudy,
-        currentLevelOfEducation,
-        YearOfGraduation,
-        DiplomaObtained,
-        CGPA,
-        iamapplyingfor,
-        atwhatUniversity,
-        inWhichCountry,
-        interestedCountry,
-        whatcourse,
-        tuitionbudget,
-        Haveyoutravelledbefore,
-        refussalBeforeConsulate,
-        amountforBankStatement,
-        sponsor,
-        relationshipwithsponsor,
-        sponsorworkplace,
-        sponsorapproximatesalaryMonth,
-        sponsorapproximatesalaryYear,
+        PersonalInfo: {
+          name,
+          lastname,
+          middlename,
+          nameofFather,
+          nameofMother,
+          gender,
+          nationality,
+          countryOfresidence,
+          dob,
+          placeOfBirth,
+          countryofBirth,
+          maritalStatus,
+          address,
+          email,
+          contact,
+        },
+        EducationalBackground: {
+          PreviousLevelofStudy,
+          currentLevelOfEducation,
+          YearOfGraduation,
+          DiplomaObtained,
+          CGPA,
+        },
+        StudyInformation: {
+          iamapplyingfor,
+          atwhatUniversity,
+          inWhichCountry,
+          interestedCountry,
+          whatcourse,
+          tuitionbudget,
+        },
+        PassPortDetails: {
+          passportNumber,
+          issueDate,
+          issuedBy,
+          expiryDate,
+          nin,
+        },
+        OtherInformation: {
+          Haveyoutravelledbefore,
+          refussalBeforeConsulate,
+          amountforBankStatement,
+          sponsor,
+          relationshipwithsponsor,
+          sponsorworkplace,
+          sponsorapproximatesalaryMonth,
+          sponsorapproximatesalaryYear,
+        },
+
         uid: user.uid,
       });
       console.log("Application submitted");
     } catch (error) {
       console.error("Error writing document: ", error);
     }
-    router.push("/UploadFiles");
+    router.push("/Board");
   };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h1 className="text-3xl uppercase text-sky-500">
-          Personal Information
-        </h1>
-        <div className="grid  grid-flow-col gap-4">
-          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 className="text-3xl uppercase text-black  m-8">
+          PERSONAL INFORMATION
+        </h2>
+        <div className="">
+          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
               <label htmlFor="name" className="font-bold">
                 First Name:
               </label>
               <Input
-                className="shadow-xl border-stone-950 required:border-red-500"
+                className={`shadow-xl border ${
+                  !name ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="name"
                 value={name}
@@ -149,7 +162,9 @@ const FormApply: React.FC = () => {
                 Middle Name:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !middlename ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="name"
                 value={middlename}
@@ -162,7 +177,9 @@ const FormApply: React.FC = () => {
                 Last Name:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !lastname ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="lastname"
                 value={lastname}
@@ -175,7 +192,9 @@ const FormApply: React.FC = () => {
                 Father's Name:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !nameofFather ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="nameofFather"
                 value={nameofFather}
@@ -188,7 +207,9 @@ const FormApply: React.FC = () => {
                 Mother's Name :
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !nameofMother ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="nameofMother"
                 value={nameofMother}
@@ -201,7 +222,9 @@ const FormApply: React.FC = () => {
                 Nationality:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !nationality ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="nationality"
                 value={nationality}
@@ -214,6 +237,7 @@ const FormApply: React.FC = () => {
                 Gender:
               </label>
               <select
+                className={"shadow-xl border"}
                 id="Gender"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
@@ -229,7 +253,9 @@ const FormApply: React.FC = () => {
                 Country of Residence:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !countryOfresidence ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="countryOfResidence"
                 value={countryOfresidence}
@@ -242,6 +268,9 @@ const FormApply: React.FC = () => {
                 Date of Birth:
               </label>
               <Input
+                className={`shadow-xl border ${
+                  !dob ? "border-red-600" : "border-gray-300"
+                }`}
                 type="date"
                 id="dob"
                 value={dob}
@@ -254,7 +283,9 @@ const FormApply: React.FC = () => {
                 Place of Birth:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !placeOfBirth ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="placeofbirth"
                 value={placeOfBirth}
@@ -267,7 +298,9 @@ const FormApply: React.FC = () => {
                 Country of Birth:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !countryofBirth ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="coutry of birth"
                 value={countryofBirth}
@@ -280,6 +313,9 @@ const FormApply: React.FC = () => {
                 Marital status:
               </label>
               <select
+                className={`shadow-xl border ${
+                  !maritalStatus ? "border-red-600" : "border-gray-300"
+                }`}
                 id="Marital Status"
                 value={maritalStatus}
                 onChange={(e) => setMaritalStatus(e.target.value)}
@@ -297,7 +333,9 @@ const FormApply: React.FC = () => {
                 Email:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !email ? "border-red-600" : "border-gray-300"
+                }`}
                 type="email"
                 id="email"
                 value={email}
@@ -310,7 +348,9 @@ const FormApply: React.FC = () => {
                 Contact:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !contact ? "border-red-600" : "border-gray-300"
+                }`}
                 type="number"
                 id="contact"
                 value={contact}
@@ -323,7 +363,9 @@ const FormApply: React.FC = () => {
                 Address:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !address ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="address"
                 value={address}
@@ -333,17 +375,19 @@ const FormApply: React.FC = () => {
             </div>
           </div>
         </div>
-        <h1 className="text-3xl uppercase text-sky-500">
+        <h2 className="text-3xl uppercase text-black m-8 ">
           IDENTIFICATION DOCUMENT
-        </h1>
-        <div className="grid grid-flow-col gap-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        </h2>
+        <div className="grid grid-flow-col gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
               <label htmlFor="passportNumber" className="font-bold">
                 Passport Number:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !passportNumber ? "border-red-600" : "border-gray-300"
+                }`}
                 type="number"
                 id="passportNumber"
                 value={passportNumber}
@@ -356,6 +400,9 @@ const FormApply: React.FC = () => {
                 Issue Date:
               </label>
               <Input
+                className={`shadow-xl border ${
+                  !issueDate ? "border-red-600" : "border-gray-300"
+                }`}
                 type="date"
                 id="issue date"
                 value={issueDate}
@@ -368,7 +415,9 @@ const FormApply: React.FC = () => {
                 Issued By:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !issuedBy ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="Issued By"
                 value={issuedBy}
@@ -381,6 +430,9 @@ const FormApply: React.FC = () => {
                 Expiry Date:
               </label>
               <Input
+                className={`shadow-xl border ${
+                  !expiryDate ? "border-red-600" : "border-gray-300"
+                }`}
                 type="date"
                 id="Expiry date"
                 value={expiryDate}
@@ -393,7 +445,9 @@ const FormApply: React.FC = () => {
                 Identification Number:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !nin ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="nin"
                 value={nin}
@@ -403,15 +457,17 @@ const FormApply: React.FC = () => {
             </div>
           </div>
         </div>
-        <h1 className="text-3xl uppercase text-sky-500">STUDY INFORMATION</h1>
-        <div className="grid grid-flow-col gap-4">
-          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 className="text-3xl uppercase text-black m-8">STUDY INFORMATION</h2>
+        <div className="grid grid-flow-col gap-12">
+          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
               <label htmlFor="previous level of study" className="font-bold">
                 Previous Level of Study:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !PreviousLevelofStudy ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="previous level of study"
                 value={PreviousLevelofStudy}
@@ -424,7 +480,11 @@ const FormApply: React.FC = () => {
                 Current Level of Education:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !currentLevelOfEducation
+                    ? "border-red-600"
+                    : "border-gray-300"
+                }`}
                 type="text"
                 id="currret leveldof education"
                 value={currentLevelOfEducation}
@@ -437,7 +497,9 @@ const FormApply: React.FC = () => {
                 School Graduated from:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !Institution ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="Institution"
                 value={Institution}
@@ -450,6 +512,9 @@ const FormApply: React.FC = () => {
                 Year of Graduation:
               </label>
               <Input
+                className={`shadow-xl border ${
+                  !YearOfGraduation ? "border-red-600" : "border-gray-300"
+                }`}
                 type="date"
                 id="year of graduation"
                 value={YearOfGraduation}
@@ -462,6 +527,9 @@ const FormApply: React.FC = () => {
                 Diploma Obtained:
               </label>
               <select
+                className={`shadow-xl border ${
+                  !DiplomaObtained ? "border-red-600" : "border-gray-300"
+                }`}
                 id="DiplomaObtained"
                 value={DiplomaObtained}
                 onChange={(e) => setDiplomaObtained(e.target.value)}
@@ -478,7 +546,9 @@ const FormApply: React.FC = () => {
                 CGPA:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !CGPA ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="CGPA"
                 value={CGPA}
@@ -491,6 +561,9 @@ const FormApply: React.FC = () => {
                 I am applying for:
               </label>
               <select
+                className={`shadow-xl border ${
+                  !iamapplyingfor ? "border-red-600" : "border-gray-300"
+                }`}
                 id="i am applying for"
                 value={iamapplyingfor}
                 onChange={(e) => setIamapplyingfor(e.target.value)}
@@ -507,7 +580,9 @@ const FormApply: React.FC = () => {
                 At what University?:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !atwhatUniversity ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="at what university"
                 value={atwhatUniversity}
@@ -520,7 +595,9 @@ const FormApply: React.FC = () => {
                 In which Country?:
               </label>
               <Input
-                className="shadow-xl required:border-red-500"
+                className={`shadow-xl border ${
+                  !inWhichCountry ? "border-red-600" : "border-gray-300"
+                }`}
                 type="text"
                 id="in which country"
                 value={inWhichCountry}
@@ -531,11 +608,11 @@ const FormApply: React.FC = () => {
           </div>
         </div>
 
-        <h1 className="text-3xl uppercase text-sky-500">
-          If Unknown , Please fill below
-        </h1>
-        <div className="grid  grid-flow-col gap-4">
-          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 className="text-3xl uppercase text-black  m-8">
+          IF UNKNOWN, PLEASE FILL BELOW
+        </h2>
+        <div className="grid  grid-flow-col ">
+          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
               <label
                 htmlFor="which country are you interested in"
@@ -577,9 +654,11 @@ const FormApply: React.FC = () => {
             </div>
           </div>
         </div>
-        <h1 className="text-3xl uppercase text-sky-500"> TRAVEL INFORMATION</h1>
-        <div className="grid grid-flow-col gap-4">
-          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 className="text-3xl uppercase text-black m-8">
+          TRAVEL INFORMATION
+        </h2>
+        <div className="grid grid-flow-col ">
+          <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div>
               <label htmlFor="have you travelled before" className="font-bold">
                 Have you travelled before?:
@@ -594,7 +673,7 @@ const FormApply: React.FC = () => {
             </div>
             <div>
               <label htmlFor="consolate" className="font-bold">
-                Have you gotten refusal before a consolate?:
+                Have you gotten refusal before a consulate?:
               </label>
               <Input
                 className="shadow-xl border-stone-950"
@@ -686,7 +765,9 @@ const FormApply: React.FC = () => {
           </div>
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button className="m-4 bg-yellow-600" type="submit">
+          Submit
+        </Button>
       </form>
     </>
   );

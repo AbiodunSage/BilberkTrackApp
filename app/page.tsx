@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import useLogin from "../hooks/useLogin";
@@ -18,10 +17,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import useShowToast from "@/hooks/useShowToast";
 import Image from "next/image";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import useShowToast from "@/hooks/useShowToast";
 
 export default function Home() {
   const router = useRouter();
@@ -31,6 +29,7 @@ export default function Home() {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (event: any) => {
     const fieldName = event.target.name;
@@ -44,11 +43,23 @@ export default function Home() {
   const { loading, error, login } = useLogin();
 
   const handleSubmit = async () => {
-    await login(formData);
-    router.push("/board");
-    showToast("variant", "Logged in successfully", "success");
+    if (!formData.email || !formData.password) {
+      showToast("destructive", "Please fill all the fields", "error");
+      return;
+    }
+
+    const success = await login(formData);
+
+    if (success) {
+      showToast("variant", "Logged in successfully", "success");
+      router.push("/Board");
+    }
   };
-  const [showPassword, setShowPassword] = useState(false);
+
+  const Redirect = () => {
+    const url = "https://bilberktravelagency.com/";
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <div
@@ -58,66 +69,61 @@ export default function Home() {
       }}
     >
       <main className="flex flex-col justify-between p-6 md:p-8">
-        <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
-          <Image
-            src="/logowithoutBackground.png"
-            alt="logo"
-            width={150}
-            height={150}
-            className="w-24 h-auto md:w-40"
-          />
-          <div className="flex flex-col md:flex-row gap-4">
-            <Button asChild>
-              <Link href="https://bilberktravelagency.com/">
-                Go back to site
-              </Link>
-            </Button>
-            <Button asChild>
-              <Link href="/Tracking/TrackLogin">Track Your Progress</Link>
-            </Button>
+        <div className="flex flex-col md:flex-row items-center gap-4 mb-8"></div>
+        <div className="flex flex-col md:flex-row gap-12 items-center justify-center">
+          <div className="m-8 gap-4 ">
+            <Image
+              onClick={Redirect}
+              src="/logowithoutBackground.png"
+              alt="logo"
+              width={400}
+              height={400}
+              className="w-40 h-auto md:w-96"
+            />
           </div>
-        </div>
-        <div className="flex flex-col md:flex-row gap-8 items-center justify-center">
           <div className="flex items-center justify-center py-8 md:py-12">
             <div className="w-full max-w-xs md:max-w-sm lg:max-w-md">
               <div className="text-center mb-6">
                 <h1 className="text-2xl md:text-3xl font-bold">Login</h1>
-                <p className="text-sm md:text-base text-muted-foreground">
+                <p
+                  style={{ fontFamily: "cursive", fontSize: 20 }}
+                  className="text-sm md:text-base text-muted-foreground"
+                >
                   Enter your email below to login to your account
                 </p>
               </div>
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="m@example.com"
+                    placeholder="Email"
                     required
                   />
                 </div>
-                <div>
-                  <div className="flex justify-between items-center">
-                    <Label htmlFor="password">Password</Label>
-                    <button
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="text-gray-600 hover:text-gray-800"
-                    >
-                      {showPassword ? <EyeOffIcon /> : <EyeIcon />}
-                    </button>
-                  </div>
+                <div className="relative">
                   <Input
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
+                    placeholder="Password"
                     type={showPassword ? "text" : "password"}
                     required
+                    className="pr-10"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-600 hover:text-gray-800"
+                  >
+                    {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+                  </button>
                 </div>
+
                 <div className="flex justify-end">
                   <AlertDialog>
                     <AlertDialogTrigger className="text-sm text-yellow-600 hover:underline">
@@ -136,26 +142,24 @@ export default function Home() {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-                <Button onClick={handleSubmit} type="submit" className="w-full">
-                  Login
+                <Button
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="w-full"
+                  disabled={loading} // Disable while loading
+                >
+                  {loading ? "Logging in..." : "Login"}
                 </Button>
               </div>
               <div className="mt-4 text-center text-sm">
-                Don&apos;t have an account?{" "}
+                <p style={{ fontFamily: "cursive", fontSize: 20 }}>
+                  Don&apos;t have an account?{" "}
+                </p>
                 <Link href="/Signup" className="underline">
                   Sign up
                 </Link>
               </div>
             </div>
-          </div>
-          <div className="hidden md:flex items-center justify-center">
-            <ScrollArea className="h-[400px] w-[300px] lg:h-[500px] lg:w-[400px] rounded-md border p-4">
-              <img
-                src="/registrationImage.png"
-                alt="logo"
-                className="h-full w-full object-cover"
-              />
-            </ScrollArea>
           </div>
         </div>
       </main>

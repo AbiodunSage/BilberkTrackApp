@@ -16,18 +16,25 @@ import {
 const blogData = [
   {
     src: "/1.svg",
-    link: "https://bilberktravelagency.com/how-to-get-your-visa-to-study-abroad/",
+    link: "https://bilberktravelagency.com/learning-more-about-your-destination-and-finding-a-part-time-job-after-getting-admission-to-study-abroad/",
   },
   {
     src: "/2.svg",
+    link: "https://bilberktravelagency.com/blog/",
+  },
+  {
+    src: "/3.svg",
     link: "https://bilberktravelagency.com/prepare-for-your-study-abroad-interview/",
   },
-  { src: "/3.svg", link: "/ApplicationForm" },
+
   {
     src: "/4.svg",
+    link: "https://bilberktravelagency.com/how-to-get-your-visa-to-study-abroad/",
+  },
+  {
+    src: "/5.svg",
     link: "https://bilberktravelagency.com/learning-more-about-your-destination-and-finding-a-part-time-job-after-getting-admission-to-study-abroad/",
   },
-  { src: "/5.svg", link: "Signup" },
 ];
 
 export function Caroussel() {
@@ -46,18 +53,18 @@ export function Caroussel() {
         {blogData.map((item, index) => (
           <CarouselItem key={index}>
             <div className="p-1 m-8">
-              <Link href={item.link}>
-                <img
-                  src={item.src}
-                  /* width={300}
-                    height={50} */
-                  alt={`Blog Image ${index + 1}`}
-                  style={{
-                    width: "",
-                    height: "",
-                    objectFit: "fill",
-                  }}
-                />
+              <Link legacyBehavior href={item.link} passHref>
+                <a target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={item.src}
+                    alt={`Blog Image ${index + 1}`}
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      objectFit: "fill",
+                    }}
+                  />
+                </a>
               </Link>
             </div>
           </CarouselItem>
