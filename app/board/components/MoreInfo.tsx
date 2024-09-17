@@ -12,20 +12,20 @@ const MoreInfo = () => {
     {
       title: "INTERVIEW",
       description: "Prepare for your Interview",
-      imgUrl: "/Bint.png",
+      imgUrl: "/interview.png",
       link: "https://bilberktravelagency.com/prepare-for-your-study-abroad-interview/",
     },
     {
       title: "VISA",
       description: "How to get your visa to study abroad",
-      imgUrl: "/fint.png",
+      imgUrl: "/visa.png",
       link: "https://bilberktravelagency.com/how-to-get-your-visa-to-study-abroad/",
     },
 
     {
       title: "BILBERK",
       description: "Visit Our Blog for more Information",
-      imgUrl: "/dint.png",
+      imgUrl: "/more.png",
       link: "https://bilberktravelagency.com/blog",
     },
   ];
